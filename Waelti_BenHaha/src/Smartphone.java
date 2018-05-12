@@ -1,10 +1,16 @@
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.imageio.ImageIO;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,18 +20,19 @@ import javax.swing.JPanel;
 
 public class Smartphone extends JFrame{
 
-	private static final long serialVersionUID = 1L;
 	
 	//Contenu de l'écran principal
 	private JLabel contacts = new JLabel("Contacts");
-	JButton boutonContacts = new JButton();
+	private JButton boutonContacts = new JButton(new ImageIcon ("C:/Users/nadin/git/Waelti_BenHaha/images/"));
 	private JLabel photos = new JLabel("Photos");
-	JButton boutonPhotos = new JButton();	
+	private JButton boutonPhotos = new JButton();	
 	private JLabel eteindre = new JLabel("Eteindre");
-	JButton boutonEteindre = new JButton();	
+	private JButton boutonEteindre = new JButton();	
 	private JLabel calculatrice = new JLabel("Calculatrice");
-	JButton boutonCalculatrice = new JButton();	
-	JButton launcher = new JButton();	
+	private JButton boutonCalculatrice = new JButton();	
+	private JLabel configurationFondEcran = new JLabel("Configuration");
+	private JButton boutonConfigurerFondEcran = new JButton();	
+	private JButton launcher = new JButton();	
 	
 	//Coque natel
 	private  JLabel coqueGaucheNatel = new JLabel("gauche.png"); 
@@ -34,9 +41,10 @@ public class Smartphone extends JFrame{
 	private  JLabel coqueBasNatel = new JLabel("bas.png"); 
 	
 	private JPanel panel = new JPanel();
-	
+
 	//Constructeur 	
 	public Smartphone (){
+		
 		
 		//Coque du natel :
 		add(coqueHautNatel,BorderLayout.NORTH);
@@ -44,21 +52,33 @@ public class Smartphone extends JFrame{
 		add(coqueDroitNatel,BorderLayout.EAST);
 		add(coqueGaucheNatel,BorderLayout.WEST);
 		
-		//Ecran
-		panel.setLayout(new FlowLayout());
+		//Ecran au centre
+		panel.setLayout(new FlowLayout ());
 		
 		//Icones
 		add(panel, BorderLayout.CENTER);
-		boutonContacts.setSize(10, 10);
 		panel.add(boutonContacts);
 		panel.add(contacts);
+		boutonContacts.addActionListener(new AfficherContacts ());
+		
 		panel.add(boutonPhotos);
 		panel.add(photos);
+		boutonPhotos.addActionListener(new AfficherPhotos ());
+		
+		panel.add(boutonCalculatrice);
+		panel.add(calculatrice);
+		boutonCalculatrice.addActionListener(new AfficherCalculatrice ());
+		
+		panel.add(boutonConfigurerFondEcran);
+		panel.add(configurationFondEcran);
+		boutonEteindre.addActionListener(new ConfigurerFondEcran());
+		
 		panel.add(boutonEteindre);
 		panel.add(eteindre);
 		boutonEteindre.addActionListener(new EteindreSmartphone());
-		panel.add(boutonCalculatrice);
-		panel.add(calculatrice);
+		
+		
+		
 		
 		//Taille du natel :
 		setSize(800, 400); 
@@ -100,6 +120,12 @@ public class Smartphone extends JFrame{
 				dispose();
 			}
 		}
+		
+		class ConfigurerFondEcran implements ActionListener{
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Affiche ListeContacts au centre
+			}}
 }
 		
 		
