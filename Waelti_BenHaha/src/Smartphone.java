@@ -1,7 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.DisplayMode;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
@@ -12,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -69,36 +69,40 @@ public class Smartphone extends JFrame{
 		     
 		}
 	};
+	
 
 	//Constructeur 	
 	public Smartphone (){
 		//Déplacements smartphone
 		addMouseListener(SMMove);
 		addMouseMotionListener(SMMove);
+	
 		
 		//Design
-		setSize(525, 900); 
-		setResizable(false);
-		this.setUndecorated(true);
+		setSize(525, 900);
+		setUndecorated(true);
+		setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
 		Toolkit toolkit = getToolkit();         
 		Dimension size = toolkit.getScreenSize();         
 		setLocation(size.width/2 - getWidth()/2,    size.height/2 - getHeight()/2);
-
+		
 		//Coque du natel :
 		add(coqueHautNatel,BorderLayout.NORTH);
 		add(coqueDroitNatel,BorderLayout.EAST);
 		add(coqueGaucheNatel,BorderLayout.WEST);
 		add(panelBoutonHomeJPanel,BorderLayout.SOUTH);
 		
+		
 		//Bas du natel
 		panelBoutonHomeJPanel.setLayout(new BorderLayout());
 		panelBoutonHomeJPanel.add(launcher,BorderLayout.CENTER);
 		panelBoutonHomeJPanel.setBackground(Color.black);
+		panelBoutonHomeJPanel.add(Box.createRigidArea(new Dimension (0,41)),BorderLayout.SOUTH);
+		panelBoutonHomeJPanel.add(Box.createRigidArea(new Dimension (0,41)),BorderLayout.NORTH);
 		
 		//Ecran au centre
 		add(panel, BorderLayout.CENTER);
 		panel.setLayout(new GridLayout (2,2));
-		panel.setBackground(Color.BLACK);
 		panel.add(boutonContacts);		
 		boutonContacts.addMouseListener(new MouseAdapter() {
             @Override
@@ -135,7 +139,6 @@ public class Smartphone extends JFrame{
 
         });
 		
-		pack();
 		
 		
 	}
