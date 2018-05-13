@@ -5,5 +5,4 @@ public class Main {
 		Smartphone mySmartphone = new Smartphone();
 		mySmartphone.setVisible(true);
 	}
-
 }
