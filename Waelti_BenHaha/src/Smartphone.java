@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
@@ -44,7 +45,7 @@ public class Smartphone extends JFrame{
 		protected void paintComponent(Graphics g){
 		      super.paintComponents(g);
 		     try {
-				background = ImageIO.read(new File("images/fondEcran.png"));
+				background = ImageIO.read(new File("images/backgroundImage.png"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -102,8 +103,11 @@ public class Smartphone extends JFrame{
 		
 		//Ecran au centre
 		add(panel, BorderLayout.CENTER);
-		panel.setLayout(new GridLayout (2,2));
-		panel.add(boutonContacts);		
+		panel.setLayout(new GridLayout(2,2));
+		
+		
+		
+		panel.add(boutonContacts);	
 		boutonContacts.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -111,8 +115,7 @@ public class Smartphone extends JFrame{
             }
 
         });		
-		
-		panel.add(boutonPhotos);
+		panel.add(boutonPhotos);	
 		boutonPhotos.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -120,7 +123,7 @@ public class Smartphone extends JFrame{
             }
 
         });
-		
+
 		panel.add(boutonCalculatrice);
 		boutonCalculatrice.addMouseListener(new MouseAdapter() {
             @Override
@@ -129,8 +132,7 @@ public class Smartphone extends JFrame{
             }
 
         });
-		
-		panel.add(boutonEteindre);
+		panel.add(boutonEteindre);		
 		boutonEteindre.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -138,8 +140,6 @@ public class Smartphone extends JFrame{
             }
 
         });
-		
-		
 		
 	}
 		
