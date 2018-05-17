@@ -1,3 +1,5 @@
+import javax.swing.JPanel;
+
 
 public class Contact {
 	
@@ -23,6 +25,7 @@ public class Contact {
 		this.prenom = prenom;
 		this.numero = numero;
 		this.email = email;
+		this.identifiantUnique = nom+prenom+numero;
 	}
 	
 	public Contact(String nom, String prenom, String numero, String email, Photo photo){
@@ -31,6 +34,7 @@ public class Contact {
 		this.numero = numero;
 		this.email = email;
 		this.photo = photo;
+		this.identifiantUnique = nom+prenom+numero;
 	}
 	
 	public Contact(String nom, String prenom, String numero, Photo photo){
@@ -38,6 +42,7 @@ public class Contact {
 		this.prenom = prenom;
 		this.numero = numero;
 		this.photo = photo;
+		this.identifiantUnique = nom+prenom+numero;
 	}
 	
 	
@@ -46,8 +51,8 @@ public class Contact {
 		int compteur = 0;		
 		boolean contactExisteDeja = false; 		
 		//par défaut, le contact n'existe pas
-		//vérifier s'il existe en parcourant la liste
-		//si oui, dire qu'il existe déjà
+		//vérifier s'il existe en parcourant la liste grâce à l'identifiant unique (.equals)
+		//si oui, dire qu'il existe déjà et ne pas l'ajouter
 		//si non, l'ajouter
 	}
 	
@@ -55,11 +60,12 @@ public class Contact {
 		int compteur = 0;
 		//retrouver ce contact grâce à son identifiant en parcourant la liste de contacts
 		//ouvrir une fenêtre d'édition
+		//enregistrer ou annuler
 	}
 	
 	public void supprimerContact(){
 		int compteur = 0;
-		//le supprimer grâce à l'identifiant this.getIdentifiant equals Contact.getIdentifiant
+		//le supprimer grâce à l'identifiant this.getIdentifiantUnique equals Contact.getIdentifiantUnique
 		}
 	
 	
