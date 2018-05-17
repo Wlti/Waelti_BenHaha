@@ -1,50 +1,53 @@
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.border.Border;
 
 
 public class Settings extends JPanel{
 	//Mode Avion
-	private JLabel avionImage = new JLabel (new ImageIcon("photos/avion.png"));
+	private JLabel avionImage = new JLabel (new ImageIcon("settings/avion.png"));
 	private JLabel avion = new JLabel ("Mode Avion");
-	private JLabel non = new JLabel (new ImageIcon("non/avion.png"));
 	
 	//Wi-Fi
-	private JLabel wifiImage = new JLabel (new ImageIcon("wifi/avion.png"));
-	private JLabel wifi = new JLabel ("Mode Avion");
-	private JLabel sanswifi = new JLabel ("Non >");
+	private JLabel wifiImage = new JLabel (new ImageIcon("settings/wifi.png"));
+	private JLabel wifi = new JLabel ("Wi-Fi");
 	
 	//Wi-Fi
-	private JLabel bluetoothImage = new JLabel (new ImageIcon("bluetooth/avion.png"));
+	private JLabel bluetoothImage = new JLabel (new ImageIcon("settings/bluetooth.png"));
 	private JLabel bluetooth = new JLabel ("Bluetooth");
-	private JLabel sansbluetooth = new JLabel ("Non >");
 	
 	//Données cellulaires
-	private JLabel donneescelImage = new JLabel (new ImageIcon("donnesCel/avion.png"));
+	private JLabel donneescelImage = new JLabel (new ImageIcon("settings/donnesCel.png"));
 	private JLabel donneescel = new JLabel ("Données cellulaires");
-	private JLabel donnes = new JLabel (">");
 	
 	//Partage de connexion
-	private JLabel partageconImage = new JLabel (new ImageIcon("partageConnexion/avion.png"));
+	private JLabel partageconImage = new JLabel (new ImageIcon("settings/partageConnexion.png"));
 	private JLabel partagecon = new JLabel ("Partage de connexion");
-	private JLabel sanspartage = new JLabel ("Non >");
 	
 	//Opérateur
-	private JLabel opImage = new JLabel (new ImageIcon("operateur/avion.png"));
+	private JLabel opImage = new JLabel (new ImageIcon("settings/operateur.png"));
 	private JLabel op = new JLabel ("Opérateur");
-	private JLabel operateur = new JLabel ("Swisscom");
 		
 	//Fond d'écran
-	private JLabel fondImage = new JLabel (new ImageIcon("fondEcran/avion.png"));
+	private JLabel fondImage = new JLabel (new ImageIcon("settings/fondecran.png"));
 	private JLabel fond = new JLabel ("Fond d'écran");
-	private JLabel fondecran = new JLabel (">");
 	
 	private JScrollPane scroll;
 	
@@ -59,34 +62,73 @@ public Settings (){
 	add(gallerieButton,BorderLayout.NORTH);
 	gallerieButton.setAlignmentX(CENTER_ALIGNMENT);
     gallerieButton.setFont(font);
+    gallerieButton.setForeground(Color.white);
     gallerieButton.setHorizontalAlignment((int) CENTER_ALIGNMENT);
-    
-	setBackground(Color.white);
-	imagesJPanel.setLayout(new GridLayout(0,3));
+    imagesJPanel.setBorder(BorderFactory.createEmptyBorder(10,5,10,5));
+	setBackground(Color.black);
+	
+	imagesJPanel.setBackground(Color.white);
+	imagesJPanel.setLayout(new GridLayout(0,2));
+	
+	
 	imagesJPanel.add(avionImage);
+	avionImage.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	imagesJPanel.add(avion);
-	imagesJPanel.add(non);
+	avion.setFont(font);
+	avion.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+	
 	imagesJPanel.add(wifiImage);
+	wifiImage.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	imagesJPanel.add(wifi);
-	imagesJPanel.add(sanswifi);
+	wifi.setFont(font);
+	wifi.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+	
 	imagesJPanel.add(bluetoothImage);
+	bluetoothImage.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	imagesJPanel.add(bluetooth);
-	imagesJPanel.add(sansbluetooth);
+	bluetooth.setFont(font);
+	bluetooth.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+	
+	
 	imagesJPanel.add(donneescelImage);
+	donneescelImage.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	imagesJPanel.add(donneescel);
-	imagesJPanel.add(donnes);
+	donneescel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+	donneescel.setFont(font);
+	
+	
 	imagesJPanel.add(partageconImage);
+	partageconImage.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	imagesJPanel.add(partagecon);
-	imagesJPanel.add(sanspartage);
+	partagecon.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+	partagecon.setFont(font);
+	
+	
 	imagesJPanel.add(opImage);
+	opImage.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	imagesJPanel.add(op);
-	imagesJPanel.add(operateur);
+	op.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+	op.setFont(font);
+	
+	
 	imagesJPanel.add(fondImage);
+	fondImage.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+	fond.setFont(font);
+	fond.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	imagesJPanel.add(fond);
-	imagesJPanel.add(fondecran);
+	fondImage.addMouseListener(new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+        	//Changer le fond d'écran
+        }
+    });	
+	
 	
     scroll = new JScrollPane(imagesJPanel);
     add(scroll);
+ 
 	
 }
+
+
 }
