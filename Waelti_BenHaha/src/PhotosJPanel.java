@@ -1,40 +1,29 @@
-import java.awt.BorderLayout;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.RenderingHints;
+import java.awt.*;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
-import java.util.List;
-import javax.swing.AbstractAction;
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JToolBar;
-import javax.swing.SwingWorker;
+import java.util.*;
+
+import javax.swing.*;
  
 
 public class PhotosJPanel extends JPanel {
      
     private JLabel photographLabel = new JLabel();
     private JToolBar buttonBar = new JToolBar();
-    private String imagedir = "images/";
-    private JLabel ajouterPhoto = new JLabel (new ImageIcon());
-    
-    private String[] imageCaptions = { "Original SUNW Logo", "The Clocktower",
-    "Clocktower from the West", "The Mansion", "Sun Auditorium"};
      
-    //Liste des photos de base
-    private String[] imageFileNames = { "sunw01.png", "sunw02.png",
-    "sunw03.png", "sunw04.png", "sunw05.png"};
+    private String imagedir = "photos/";
      
-   
-    public PhotosJPanel() {
-                 
-        // J'utilise un Label pour afficher les photos
+    private MissingIcon placeholderIcon = new MissingIcon();
+
+    private String[] imageFileNames = { "aishwaryarai.jpg", "amazing.jpg",
+    "art.jpg", "chateau.jpg", "fashion.jpg", "fiesta.jpg","hiver.jpg",
+    "lac.jpg", "love.jpg","maisons.jpg","moscou.jpg","mylene.jpg","vacances.jpg"};
+     
+
+    public PhotosJPanel() {        
+         
+        // A label for displaying the pictures
         photographLabel.setVerticalTextPosition(JLabel.BOTTOM);
         photographLabel.setHorizontalTextPosition(JLabel.CENTER);
         photographLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -50,23 +39,41 @@ public class PhotosJPanel extends JPanel {
         add(photographLabel, BorderLayout.CENTER);
          
         setSize(400, 300);
-         
-        
+                 
         // start the image loading SwingWorker in a background thread
         loadimages.execute();
     }
      
-  
+    /**
+     * SwingWorker class that loads the images a background thread and calls publish
+     * when a new one is ready to be displayed.
+     *
+     * We use Void as the first SwingWroker param as we do not need to return
+     * anything from doInBackground().
+     */
     private SwingWorker<Void, ThumbnailAction> loadimages = new SwingWorker<Void, ThumbnailAction>() {
          
+        /**
+         * Creates full size and thumbnail versions of the target image files.
+         */
         @Override
         protected Void doInBackground() throws Exception {
-            for (int i = 0; i < imageCaptions.length; i++) {
+            for (int i = 0; i < imageFileNames.length; i++) {
                 ImageIcon icon;
-                icon = createImageIcon(imagedir + imageFileNames[i], imageCaptions[i]);
+                icon = createImageIcon(imagedir + imageFileNames[i]);
+                 
                 ThumbnailAction thumbAction;
-                ImageIcon thumbnailIcon = new ImageIcon(getScaledImage(icon.getImage(), 32, 32));
-                thumbAction = new ThumbnailAction(icon, thumbnailIcon, imageCaptions[i]);
+                if(icon != null){
+                     
+                    ImageIcon thumbnailIcon = new ImageIcon(getScaledImage(icon.getImage(), 32, 32));
+                     
+                    thumbAction = new ThumbnailAction(icon, thumbnailIcon);
+                     
+                }else{
+                    // the image failed to load for some reason
+                    // so load a placeholder instead
+                    thumbAction = new ThumbnailAction(placeholderIcon, placeholderIcon);
+                }
                 publish(thumbAction);
             }
             // unfortunately we must return something, and only null is valid to
@@ -77,8 +84,7 @@ public class PhotosJPanel extends JPanel {
         /**
          * Process all loaded images.
          */
-        @Override
-        protected void process(List<ThumbnailAction> chunks) {
+        protected void process(ThumbnailAction[] chunks) {
             for (ThumbnailAction thumbAction : chunks) {
                 JButton thumbButton = new JButton(thumbAction);
                 // add the new button BEFORE the last glue
@@ -93,11 +99,10 @@ public class PhotosJPanel extends JPanel {
      * @param String - resource path
      * @param String - description of the file
      */
-    protected ImageIcon createImageIcon(String path,
-            String description) {
+    protected ImageIcon createImageIcon(String path) {
         java.net.URL imgURL = getClass().getResource(path);
         if (imgURL != null) {
-            return new ImageIcon(imgURL, description);
+            return new ImageIcon(imgURL);
         } else {
             System.err.println("Couldn't find file: " + path);
             return null;
@@ -135,20 +140,57 @@ public class PhotosJPanel extends JPanel {
          * @param Icon - The thumbnail to show in the button.
          * @param String - The descriptioon of the icon.
          */
-        public ThumbnailAction(Icon photo, Icon thumb, String desc){
+        public ThumbnailAction(Icon photo, Icon thumb){
             displayPhoto = photo;
              
-            // The short description becomes the tooltip of a button.
-            putValue(SHORT_DESCRIPTION, desc);
+          
              
             // The LARGE_ICON_KEY is the key for setting the
             // icon when an Action is applied to a button.
             putValue(LARGE_ICON_KEY, thumb);
         }
          
-       
+        /**
+         * Shows the full image in the main area and sets the application title.
+         */
         public void actionPerformed(ActionEvent e) {
             photographLabel.setIcon(displayPhoto);
         }
+        
+        
+    }
+    public class MissingIcon implements Icon{
+
+        private int width = 32;
+        private int height = 32;
+
+        private BasicStroke stroke = new BasicStroke(4);
+
+        public void paintIcon(Component c, Graphics g, int x, int y) {
+            Graphics2D g2d = (Graphics2D) g.create();
+
+            g2d.setColor(Color.WHITE);
+            g2d.fillRect(x +1 ,y + 1,width -2 ,height -2);
+
+            g2d.setColor(Color.BLACK);
+            g2d.drawRect(x +1 ,y + 1,width -2 ,height -2);
+
+            g2d.setColor(Color.RED);
+
+            g2d.setStroke(stroke);
+            g2d.drawLine(x +10, y + 10, x + width -10, y + height -10);
+            g2d.drawLine(x +10, y + height -10, x + width -10, y + 10);
+
+            g2d.dispose();
+        }
+
+        public int getIconWidth() {
+            return width;
+        }
+
+        public int getIconHeight() {
+            return height;
+        }
     }
 }
+
