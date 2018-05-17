@@ -89,7 +89,7 @@ public class Smartphone extends JFrame {
 	final static String ECRANPHOTOS = "écran photos";
 	final static String ECRANCONTACTS = "écran contacts";
 	final static String ECRANHEURE = "écran heure";
-	final static String ECRANRESET = "écran reset";
+	final static String ECRANFONDECRAN = "écran reset";
 	
 	
 	
@@ -144,7 +144,7 @@ public class Smartphone extends JFrame {
 		cards.add(new CalculatriceJPanel (),ECRANCALCULATRICE);
 		cards.add(new ContactsJPanel(),ECRANCONTACTS);
 		cards.add(new PhotosJPanel (), ECRANPHOTOS);
-		cards.add(new Settings (),ECRANRESET);
+		cards.add(new Settings (),ECRANFONDECRAN);
 		cards.add(new Heure(),ECRANHEURE);
 		
 		
@@ -183,7 +183,7 @@ public class Smartphone extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
             	CardLayout cl = (CardLayout)(cards.getLayout());
-      		   	cl.show(cards, ECRANHEURE);
+       		   	cl.show(cards, ECRANHEURE);
             }
         });	
 	
@@ -192,7 +192,8 @@ public class Smartphone extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
             	CardLayout cl = (CardLayout)(cards.getLayout());
-      		   	cl.show(cards, ECRANRESET);
+      		   	cl.show(cards, ECRANFONDECRAN);
+      		   	
             }
         });	
 		

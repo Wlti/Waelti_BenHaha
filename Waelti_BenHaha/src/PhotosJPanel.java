@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.List;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -32,10 +33,18 @@ public class PhotosJPanel extends JPanel {
     private JScrollPane scroll;
     private JLabel ajouterImage = new JLabel (new ImageIcon("photos/plus.png"));
     private JLabel ajoutJLabel = new JLabel ("Ajouter une image");
-    
+    private JLabel gallerieButton = new JLabel("Gallerie photos");
+    private Font font = new Font("Arial",Font.BOLD,20);
      
     public PhotosJPanel() {
       setLayout(new BorderLayout());
+      setBackground(Color.black);
+      add(gallerieButton,BorderLayout.NORTH);
+      gallerieButton.setForeground(Color.white);
+      gallerieButton.setAlignmentX(CENTER_ALIGNMENT);
+      gallerieButton.setFont(font);
+      gallerieButton.setHorizontalAlignment((int) CENTER_ALIGNMENT);
+     
       imagesJPanel.setLayout(new GridLayout(0,1,5,5));
       imagesJPanel.setBackground(Color.black);
       add(imagesJPanel,BorderLayout.CENTER);
@@ -63,11 +72,13 @@ public class PhotosJPanel extends JPanel {
     		  ImageIcon open = new ImageIcon("open.png"); 
     	        JToolBar toolbar = new JToolBar();         
     	        JButton openb = new JButton(open); 
-    		 
-    		  add(panel,this);
+    		 openb.addActionListener(new OuvrirFichier ());
+    		  
     		  JFileChooser fileopen = new JFileChooser(); 
-    		  FileNameExtensionFilter filter = new FileNameExtensionFilter("c files", "c");  
+    		  FileNameExtensionFilter filter = new FileNameExtensionFilter("images png", "png");  
+    		  FileNameExtensionFilter filter2 = new FileNameExtensionFilter("images jpg", "jpg"); 
     		  fileopen.addChoosableFileFilter(filter); 
+    		  fileopen.addChoosableFileFilter(filter2); 
     		  int ret = fileopen.showDialog(panel, "Open file"); 
     		  if (ret == JFileChooser.APPROVE_OPTION) {      
     			  File file = fileopen.getSelectedFile();      
@@ -77,6 +88,7 @@ public class PhotosJPanel extends JPanel {
     	  
 	});
       ajoutJLabel.setForeground(Color.white);
+      ajoutJLabel.setFont(font);
       ajoutJPanel.add(ajoutJLabel);
       ajoutJPanel.setBackground(Color.black);
       
@@ -87,13 +99,31 @@ public class PhotosJPanel extends JPanel {
         String fileString = null;      
         String line = null; 
     
-        try {        FileReader in = new FileReader (file);        BufferedReader brd = new BufferedReader (in);        fileBuffer = new StringBuffer() ; 
-    
-          while ((line = brd.readLine()) != null) {              fileBuffer.append(line + System.getProperty("line.separator"));        } 
-    
-          in.close();        fileString = fileBuffer.toString();      }      catch  (IOException e ) {        return null;      }      return fileString;     } 
+        try {        
+        	FileReader in = new FileReader (file);        
+        	BufferedReader brd = new BufferedReader (in);        
+        	fileBuffer = new StringBuffer() ; 
+          while ((line = brd.readLine()) != null) {              
+        	  fileBuffer.append(line + System.getProperty("line.separator"));        
+        	  } 
+          in.close();        
+          fileString = fileBuffer.toString();      
+          }      catch  (IOException e ) 
+        {        return null;      
+        }      
+        return fileString;     
+        } 
    
    }
+
+class OuvrirFichier implements ActionListener{
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		
+		
+	}
+}
 
 
 
