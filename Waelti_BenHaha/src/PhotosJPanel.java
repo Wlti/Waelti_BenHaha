@@ -8,189 +8,36 @@ import javax.swing.*;
  
 
 public class PhotosJPanel extends JPanel {
-     
-    private JLabel photographLabel = new JLabel();
-    private JToolBar buttonBar = new JToolBar();
-     
-    private String imagedir = "photos/";
-     
-    private MissingIcon placeholderIcon = new MissingIcon();
-
-    private String[] imageFileNames = { "aishwaryarai.jpg", "amazing.jpg",
-    "art.jpg", "chateau.jpg", "fashion.jpg", "fiesta.jpg","hiver.jpg",
-    "lac.jpg", "love.jpg","maisons.jpg","moscou.jpg","mylene.jpg","vacances.jpg"};
-     
-
-    public PhotosJPanel() {        
+	//Images par défaut
+	
+	 JLabel image1 = new JLabel (new ImageIcon("photos/amazing.jpg"));
+     JLabel image2 = new JLabel (new ImageIcon("photos/art.jpg"));
+     JLabel image3 = new JLabel (new ImageIcon("photos/chateau.jpg"));
+     JLabel image4 = new JLabel (new ImageIcon("photos/fiesta.jpg"));
+     JLabel image5 = new JLabel (new ImageIcon("photos/hiver.jpg"));
+     JLabel image6 = new JLabel (new ImageIcon("photos/lac.jpg"));
+     JLabel image7 = new JLabel (new ImageIcon("photos/love.jpg"));
+     JLabel image8 = new JLabel (new ImageIcon("photos/maisons.jpg"));
+     JLabel image9 = new JLabel (new ImageIcon("photos/vacances.jpg"));
+  
+    public PhotosJPanel() {
+      setBackground(Color.black);
+      setLayout(new FlowLayout());
+      setSize(400, 300);
+      add(image1);
+      add(image2);
+      add(image3);
+      add(image4);
+      add(image5);
+      add(image6);
+      add(image7);
+      add(image8);
+      add(image9);
+      
          
-        // A label for displaying the pictures
-        photographLabel.setVerticalTextPosition(JLabel.BOTTOM);
-        photographLabel.setHorizontalTextPosition(JLabel.CENTER);
-        photographLabel.setHorizontalAlignment(JLabel.CENTER);
-        photographLabel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-         
-        // We add two glue components. Later in process() we will add thumbnail buttons
-        // to the toolbar inbetween thease glue compoents. This will center the
-        // buttons in the toolbar.
-        buttonBar.add(Box.createGlue());
-        buttonBar.add(Box.createGlue());
-         
-        add(buttonBar, BorderLayout.SOUTH);
-        add(photographLabel, BorderLayout.CENTER);
-         
-        setSize(400, 300);
-                 
-        // start the image loading SwingWorker in a background thread
-        loadimages.execute();
+       
     }
-     
-    /**
-     * SwingWorker class that loads the images a background thread and calls publish
-     * when a new one is ready to be displayed.
-     *
-     * We use Void as the first SwingWroker param as we do not need to return
-     * anything from doInBackground().
-     */
-    private SwingWorker<Void, ThumbnailAction> loadimages = new SwingWorker<Void, ThumbnailAction>() {
-         
-        /**
-         * Creates full size and thumbnail versions of the target image files.
-         */
-        @Override
-        protected Void doInBackground() throws Exception {
-            for (int i = 0; i < imageFileNames.length; i++) {
-                ImageIcon icon;
-                icon = createImageIcon(imagedir + imageFileNames[i]);
-                 
-                ThumbnailAction thumbAction;
-                if(icon != null){
-                     
-                    ImageIcon thumbnailIcon = new ImageIcon(getScaledImage(icon.getImage(), 32, 32));
-                     
-                    thumbAction = new ThumbnailAction(icon, thumbnailIcon);
-                     
-                }else{
-                    // the image failed to load for some reason
-                    // so load a placeholder instead
-                    thumbAction = new ThumbnailAction(placeholderIcon, placeholderIcon);
-                }
-                publish(thumbAction);
-            }
-            // unfortunately we must return something, and only null is valid to
-            // return when the return type is void.
-            return null;
-        }
-         
-        /**
-         * Process all loaded images.
-         */
-        protected void process(ThumbnailAction[] chunks) {
-            for (ThumbnailAction thumbAction : chunks) {
-                JButton thumbButton = new JButton(thumbAction);
-                // add the new button BEFORE the last glue
-                // this centers the buttons in the toolbar
-                buttonBar.add(thumbButton, buttonBar.getComponentCount() - 1);
-            }
-        }
-    };
-     
-    /**
-     * Creates an ImageIcon if the path is valid.
-     * @param String - resource path
-     * @param String - description of the file
-     */
-    protected ImageIcon createImageIcon(String path) {
-        java.net.URL imgURL = getClass().getResource(path);
-        if (imgURL != null) {
-            return new ImageIcon(imgURL);
-        } else {
-            System.err.println("Couldn't find file: " + path);
-            return null;
-        }
-    }
-     
-    /**
-     * Resizes an image using a Graphics2D object backed by a BufferedImage.
-     * @param srcImg - source image to scale
-     * @param w - desired width
-     * @param h - desired height
-     * @return - the new resized image
-     */
-    private Image getScaledImage(Image srcImg, int w, int h){
-        BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
-        Graphics2D g2 = resizedImg.createGraphics();
-        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        g2.drawImage(srcImg, 0, 0, w, h, null);
-        g2.dispose();
-        return resizedImg;
-    }
-     
-    /**
-     * Action class that shows the image specified in it's constructor.
-     */
-    private class ThumbnailAction extends AbstractAction{
-         
-        /**
-         *The icon if the full image we want to display.
-         */
-        private Icon displayPhoto;
-         
-        /**
-         * @param Icon - The full size photo to show in the button.
-         * @param Icon - The thumbnail to show in the button.
-         * @param String - The descriptioon of the icon.
-         */
-        public ThumbnailAction(Icon photo, Icon thumb){
-            displayPhoto = photo;
-             
-          
-             
-            // The LARGE_ICON_KEY is the key for setting the
-            // icon when an Action is applied to a button.
-            putValue(LARGE_ICON_KEY, thumb);
-        }
-         
-        /**
-         * Shows the full image in the main area and sets the application title.
-         */
-        public void actionPerformed(ActionEvent e) {
-            photographLabel.setIcon(displayPhoto);
-        }
-        
-        
-    }
-    public class MissingIcon implements Icon{
+   }
 
-        private int width = 32;
-        private int height = 32;
 
-        private BasicStroke stroke = new BasicStroke(4);
-
-        public void paintIcon(Component c, Graphics g, int x, int y) {
-            Graphics2D g2d = (Graphics2D) g.create();
-
-            g2d.setColor(Color.WHITE);
-            g2d.fillRect(x +1 ,y + 1,width -2 ,height -2);
-
-            g2d.setColor(Color.BLACK);
-            g2d.drawRect(x +1 ,y + 1,width -2 ,height -2);
-
-            g2d.setColor(Color.RED);
-
-            g2d.setStroke(stroke);
-            g2d.drawLine(x +10, y + 10, x + width -10, y + height -10);
-            g2d.drawLine(x +10, y + height -10, x + width -10, y + 10);
-
-            g2d.dispose();
-        }
-
-        public int getIconWidth() {
-            return width;
-        }
-
-        public int getIconHeight() {
-            return height;
-        }
-    }
-}
 
