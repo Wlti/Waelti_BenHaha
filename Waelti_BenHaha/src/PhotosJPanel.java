@@ -22,8 +22,8 @@ public class PhotosJPanel extends JPanel {
   
     public PhotosJPanel() {
       setBackground(Color.black);
-      setLayout(new FlowLayout());
-      setSize(400, 300);
+      setLayout(new GridLayout(10,0));
+      setSize(445, 627);
       add(image1);
       add(image2);
       add(image3);
