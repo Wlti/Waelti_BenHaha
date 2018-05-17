@@ -35,6 +35,8 @@ public class Smartphone extends JFrame {
 	
 	//Contenu de l'écran d'accueil
 	private JLabel boutonContacts = new JLabel(new ImageIcon ("images/Contacts.png"));
+	private JLabel boutonReset = new JLabel(new ImageIcon ("images/Settings.png"));
+	private JLabel boutonHeure = new JLabel(new ImageIcon ("images/heure.png"));
 	private JLabel boutonPhotos = new JLabel(new ImageIcon ("images/Gallery.png"));	
 	private JLabel boutonEteindre = new JLabel(new ImageIcon ("images/Exit.png"));	
 	private JLabel boutonCalculatrice = new JLabel(new ImageIcon ("images/calculatrice.png"));
@@ -86,7 +88,8 @@ public class Smartphone extends JFrame {
 	final static String ECRANCALCULATRICE = "écran calculatrice";
 	final static String ECRANPHOTOS = "écran photos";
 	final static String ECRANCONTACTS = "écran contacts";
-
+	final static String ECRANHEURE = "écran heure";
+	final static String ECRANRESET = "écran reset";
 	
 	
 	
@@ -141,7 +144,8 @@ public class Smartphone extends JFrame {
 		cards.add(new CalculatriceJPanel (),ECRANCALCULATRICE);
 		cards.add(new ContactsJPanel(),ECRANCONTACTS);
 		cards.add(new PhotosJPanel (), ECRANPHOTOS);
-		
+		cards.add(new Settings (),ECRANRESET);
+		cards.add(new Heure(),ECRANHEURE);
 		
 		
 		//Ajout des éléments sur l'écran et leur écouteur :
@@ -173,6 +177,26 @@ public class Smartphone extends JFrame {
             }
         });
 		
+		
+		panel.add(boutonHeure);	
+		boutonHeure.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            	CardLayout cl = (CardLayout)(cards.getLayout());
+      		   	cl.show(cards, ECRANHEURE);
+            }
+        });	
+	
+		panel.add(boutonReset);	
+		boutonReset.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            	CardLayout cl = (CardLayout)(cards.getLayout());
+      		   	cl.show(cards, ECRANRESET);
+            }
+        });	
+		
+
 		panel.add(boutonEteindre);	
 		boutonEteindre.addMouseListener(new MouseAdapter() {
             @Override
@@ -180,15 +204,6 @@ public class Smartphone extends JFrame {
             	dispose();
             }
         });
-		
-	
-		//Initialisation des données contacts
-		
-		
-		//Initialisation des données photos
-		
-		
-		
 	
 	}
 
