@@ -17,7 +17,9 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.AbstractButton;
 import javax.swing.Box;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -41,6 +43,8 @@ public class Smartphone extends JFrame {
 	private JLabel boutonEteindre = new JLabel(new ImageIcon ("images/Exit.png"));	
 	private JLabel boutonCalculatrice = new JLabel(new ImageIcon ("images/calculatrice.png"));
 	private JLabel boutonFacebook = new JLabel(new ImageIcon ("images/facebook.png"));
+	private ImageIcon launcherInit = new ImageIcon("images/launcher.png");
+	private ImageIcon launcherOver = new ImageIcon("images/launcherOver.png");
 	
 	//Bouton Home
 	private JLabel launcher = new JLabel(new ImageIcon ("images/launcher.png"));	
@@ -110,6 +114,7 @@ public class Smartphone extends JFrame {
 		setSize(525, 900);
 		setUndecorated(true);
 		setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
+		
 		Toolkit toolkit = getToolkit();         
 		Dimension size = toolkit.getScreenSize();         
 		setLocation(size.width/2 - getWidth()/2,    size.height/2 - getHeight()/2);
@@ -130,14 +135,19 @@ public class Smartphone extends JFrame {
             	CardLayout cl = (CardLayout)(cards.getLayout());
      		    cl.show(cards, ECRANACCUEIL);
             }
-            
+            @Override
             public void mouseEntered(MouseEvent e) {
-        		panelBoutonHomeJPanel.add(launcherOver,BorderLayout.CENTER);
-		    }
+            	//Affiche l'écran d'accueil
+	            launcher.setIcon(launcherOver);
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+            	//Affiche l'écran d'accueil
+	            launcher.setIcon(launcherInit);
+            }
+           
             
-            public void mousePressed(MouseEvent e) {
-        		panelBoutonHomeJPanel.add(launcher,BorderLayout.CENTER);
-		    }
+         
         });
 		
 		
@@ -160,6 +170,7 @@ public class Smartphone extends JFrame {
 		cards.add(new Heure(),ECRANHEURE);
 		cards.add(new Facebook(),ECRANFACEBOOK);
 		
+	 
 		//Ajout des éléments sur l'écran et leur écouteur :
 		
 		panel.add(boutonContacts);	
@@ -206,6 +217,7 @@ public class Smartphone extends JFrame {
             	CardLayout cl = (CardLayout)(cards.getLayout());
       		   	cl.show(cards, ECRANFACEBOOK);
       		   	
+      		   	
             }
         });	
 	
@@ -224,6 +236,7 @@ public class Smartphone extends JFrame {
 		boutonEteindre.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+            	System.exit(1);
             	dispose();
             	
             }

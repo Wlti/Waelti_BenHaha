@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -37,12 +38,11 @@ public class CalculatriceJPanel extends JPanel {
     ecran.setForeground(Color.white);
     ecran.setFont(police);
     JPanel panEcran = new JPanel();
-    panEcran.add(Box.createRigidArea(new Dimension (0,41)),BorderLayout.NORTH);
     panEcran.add(ecran);
-    panEcran.add(Box.createRigidArea(new Dimension (0,41)),BorderLayout.NORTH);
-    panEcran.setLayout(new GridLayout(3,0));
+    panEcran.setLayout(new FlowLayout());
     panEcran.setBackground(Color.black);
     add(panEcran,BorderLayout.NORTH);
+    
     
     //Opérateurs
     JPanel operateur = new JPanel(); 

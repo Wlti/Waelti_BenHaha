@@ -123,6 +123,13 @@ class OuvrirFichier implements ActionListener{
 		
 		
 	}
+
+
+public void mouseClick(MouseEvent e) {
+	//Quand on click sur une image
+	
+	
+}
 }
 
 

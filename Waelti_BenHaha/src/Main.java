@@ -1,8 +1,11 @@
+import javax.swing.JFrame;
+
 
 public class Main {
 	
 	public static void main(String[] args) {
 		Smartphone mySmartphone = new Smartphone();
 		mySmartphone.setVisible(true);
+		mySmartphone.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }

@@ -24,6 +24,7 @@ public class Settings extends JPanel{
 	//Mode Avion
 	private JLabel avionImage = new JLabel (new ImageIcon("settings/avion.png"));
 	private JLabel avion = new JLabel ("  Mode Avion");
+	private JLabel avionOver = new JLabel (new ImageIcon("settings/avionOver.png"));
 	
 	//Wi-Fi
 	private JLabel wifiImage = new JLabel (new ImageIcon("settings/wifi.png"));
@@ -84,81 +85,80 @@ public Settings (){
 	setBackground(Color.black);
 	
 	imagesJPanel.setBackground(Color.white);
-	imagesJPanel.setLayout(new GridLayout(0,2));
+	imagesJPanel.setLayout(new GridLayout(0,2,10,20));
 	
 	
 	imagesJPanel.add(avionImage);
 	avionImage.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	imagesJPanel.add(avion);
 	avion.setFont(font);
-	avion.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	
 	imagesJPanel.add(wifiImage);
 	wifiImage.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	imagesJPanel.add(wifi);
 	wifi.setFont(font);
-	wifi.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	
 	imagesJPanel.add(bluetoothImage);
 	bluetoothImage.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	imagesJPanel.add(bluetooth);
 	bluetooth.setFont(font);
-	bluetooth.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	
 	
 	imagesJPanel.add(donneescelImage);
 	donneescelImage.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	imagesJPanel.add(donneescel);
-	donneescel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	donneescel.setFont(font);
 	
 	
 	imagesJPanel.add(partageconImage);
 	partageconImage.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	imagesJPanel.add(partagecon);
-	partagecon.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	partagecon.setFont(font);
 	
 	
 	imagesJPanel.add(opImage);
 	opImage.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	imagesJPanel.add(op);
-	op.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	op.setFont(font);
 	
 	imagesJPanel.add(generalImage);
-	imagesJPanel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+	generalImage.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	imagesJPanel.add(general);
-	general.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	general.setFont(font);
 	
 	imagesJPanel.add(notesImage);
 	notesImage.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	imagesJPanel.add(notes);
-	notes.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	notes.setFont(font);
 	
 	imagesJPanel.add(notificationsImage);
 	notificationsImage.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	imagesJPanel.add(notif);
-	notif.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	notif.setFont(font);
 	
 	imagesJPanel.add(sonsImage);
 	sonsImage.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	imagesJPanel.add(sons);
-	sons.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	sons.setFont(font);
+	sons.addMouseListener(new MouseAdapter() {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+        	//Faire du bruit
+        	
+        	
+        }
+    });	
 	
 	imagesJPanel.add(fondImage);
 	fondImage.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	fond.setFont(font);
-	fond.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	imagesJPanel.add(fond);
 	fondImage.addMouseListener(new MouseAdapter() {
         @Override
         public void mouseClicked(MouseEvent e) {
         	//Changer le fond d'écran
+        	
+        	
         }
     });	
 	
