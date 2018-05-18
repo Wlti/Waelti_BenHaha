@@ -1,8 +1,11 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.*;
+
 import javax.swing.*;
+
 import java.util.*;
+
 
 //Author: The Man - diego.caponera@gmail.com
 
@@ -16,9 +19,10 @@ public class Heure extends JPanel implements Runnable{
 	boolean afNoon;
 	GregorianCalendar cal;
 	Thread th;
+
+    private Font font = new Font("Arial",Font.BOLD,20);
 	
 	public Heure(){
-		
 		h1=new digitalNumber(20,100,size);
 		h2=new digitalNumber(100,100,size);
 		m1=new digitalNumber(200,100,size);
@@ -29,7 +33,12 @@ public class Heure extends JPanel implements Runnable{
 		setBackground(Color.WHITE);
 		setLayout(new BorderLayout());
 		
-		JCheckBox modeBox = new JCheckBox("Toggle AM/PM mode");
+		JCheckBox modeBox = new JCheckBox("Basculer en mode AM/PM");
+
+		modeBox.setFont(font);
+		modeBox.setBackground(Color.black);
+		modeBox.setForeground(Color.white);
+		modeBox.setHorizontalAlignment((int) CENTER_ALIGNMENT);
 		modeBox.addItemListener(new ItemListener(){
 			public void itemStateChanged(ItemEvent e){
 				if(e.getStateChange() == ItemEvent.DESELECTED)mode="am";
@@ -124,21 +133,21 @@ public class Heure extends JPanel implements Runnable{
 		//System.out.println(""+hours+" : "+minutes+" . "+seconds);
 	}
 	public void showDots(Graphics2D g2){
-		if(pulse)g2.setColor(Color.RED);
+		if(pulse)g2.setColor(Color.black);
 		else g2.setColor(new Color(230,230,230));
 		g2.fill(new Rectangle2D.Double(178,65,14,14));
 		g2.fill(new Rectangle2D.Double(178,135,14,14));
 	}
 	
 	public void showMode(Graphics2D g2){
-		if(afNoon && mode=="pm"){g2.setColor(Color.RED);
+		if(afNoon && mode=="pm"){g2.setColor(Color.black);
 			g2.drawString("PM", 360, 140);
 			g2.setColor(new Color(230,230,230));
 			g2.drawString("AM", 360, 120);
 		}else if(afNoon==false && mode=="pm"){
 			g2.setColor(new Color(230,230,230));
 			g2.drawString("PM", 360, 140);			
-			g2.setColor(Color.RED);
+			g2.setColor(Color.black);
 			g2.drawString("AM", 360, 120);
 		}else if(mode=="am"){
 			g2.setColor(new Color(230,230,230));
@@ -160,9 +169,9 @@ public class Heure extends JPanel implements Runnable{
 		showMode(g2);
 	}
 	
+	
 
-
-private class digitalNumber{
+public class digitalNumber{
 	int x,y;
 	int k;
 	led[] leds;
@@ -311,7 +320,7 @@ private class digitalNumber{
 		
 		public void render(Graphics2D g2){
 			g2.setColor(new Color(230,230,230));
-			if(lightOn)g2.setColor(Color.RED);				
+			if(lightOn)g2.setColor(Color.black);				
 			g2.fillPolygon(p);
 		}
 		
