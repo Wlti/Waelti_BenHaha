@@ -40,6 +40,7 @@ public class Smartphone extends JFrame {
 	private JLabel boutonPhotos = new JLabel(new ImageIcon ("images/Gallery.png"));	
 	private JLabel boutonEteindre = new JLabel(new ImageIcon ("images/Exit.png"));	
 	private JLabel boutonCalculatrice = new JLabel(new ImageIcon ("images/calculatrice.png"));
+	private JLabel boutonFacebook = new JLabel(new ImageIcon ("images/facebook.png"));
 	
 	//Bouton Home
 	private JLabel launcher = new JLabel(new ImageIcon ("images/launcher.png"));	
@@ -88,6 +89,7 @@ public class Smartphone extends JFrame {
 	final static String ECRANCALCULATRICE = "écran calculatrice";
 	final static String ECRANPHOTOS = "écran photos";
 	final static String ECRANCONTACTS = "écran contacts";
+	final static String ECRANFACEBOOK = "écran facebook";
 	final static String ECRANHEURE = "écran heure";
 	final static String ECRANFONDECRAN = "écran reset";
 	
@@ -146,7 +148,7 @@ public class Smartphone extends JFrame {
 		cards.add(new PhotosJPanel (), ECRANPHOTOS);
 		cards.add(new Settings (),ECRANFONDECRAN);
 		cards.add(new Heure(),ECRANHEURE);
-		
+		cards.add(new Facebook(),ECRANFACEBOOK);
 		
 		//Ajout des éléments sur l'écran et leur écouteur :
 		
@@ -186,6 +188,16 @@ public class Smartphone extends JFrame {
        		   	cl.show(cards, ECRANHEURE);
             }
         });	
+		
+		panel.add(boutonFacebook);	
+		boutonFacebook.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            	CardLayout cl = (CardLayout)(cards.getLayout());
+      		   	cl.show(cards, ECRANFACEBOOK);
+      		   	
+            }
+        });	
 	
 		panel.add(boutonReset);	
 		boutonReset.addMouseListener(new MouseAdapter() {
@@ -203,6 +215,7 @@ public class Smartphone extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
             	dispose();
+            	
             }
         });
 	

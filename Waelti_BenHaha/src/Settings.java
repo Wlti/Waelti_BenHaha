@@ -23,31 +23,31 @@ import javax.swing.border.Border;
 public class Settings extends JPanel{
 	//Mode Avion
 	private JLabel avionImage = new JLabel (new ImageIcon("settings/avion.png"));
-	private JLabel avion = new JLabel ("Mode Avion");
+	private JLabel avion = new JLabel ("  Mode Avion");
 	
 	//Wi-Fi
 	private JLabel wifiImage = new JLabel (new ImageIcon("settings/wifi.png"));
-	private JLabel wifi = new JLabel ("Wi-Fi");
+	private JLabel wifi = new JLabel ("  Wi-Fi");
 	
 	//Wi-Fi
 	private JLabel bluetoothImage = new JLabel (new ImageIcon("settings/bluetooth.png"));
-	private JLabel bluetooth = new JLabel ("Bluetooth");
+	private JLabel bluetooth = new JLabel ("  Bluetooth");
 	
 	//Données cellulaires
 	private JLabel donneescelImage = new JLabel (new ImageIcon("settings/donnesCel.png"));
-	private JLabel donneescel = new JLabel ("Données cellulaires");
+	private JLabel donneescel = new JLabel ("  Données cellulaires");
 	
 	//Partage de connexion
 	private JLabel partageconImage = new JLabel (new ImageIcon("settings/partageConnexion.png"));
-	private JLabel partagecon = new JLabel ("Partage de connexion");
+	private JLabel partagecon = new JLabel ("  Partage connexion");
 	
 	//Opérateur
 	private JLabel opImage = new JLabel (new ImageIcon("settings/operateur.png"));
-	private JLabel op = new JLabel ("Opérateur");
+	private JLabel op = new JLabel ("  Opérateur");
 		
 	//Fond d'écran
 	private JLabel fondImage = new JLabel (new ImageIcon("settings/fondecran.png"));
-	private JLabel fond = new JLabel ("Fond d'écran");
+	private JLabel fond = new JLabel ("  Fond d'écran");
 	
 	private JScrollPane scroll;
 	
@@ -64,7 +64,7 @@ public Settings (){
     gallerieButton.setFont(font);
     gallerieButton.setForeground(Color.white);
     gallerieButton.setHorizontalAlignment((int) CENTER_ALIGNMENT);
-    imagesJPanel.setBorder(BorderFactory.createEmptyBorder(10,5,10,5));
+    imagesJPanel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
 	setBackground(Color.black);
 	
 	imagesJPanel.setBackground(Color.white);
