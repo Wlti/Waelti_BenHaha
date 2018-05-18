@@ -29,7 +29,7 @@ public class Settings extends JPanel{
 	private JLabel wifiImage = new JLabel (new ImageIcon("settings/wifi.png"));
 	private JLabel wifi = new JLabel ("  Wi-Fi");
 	
-	//Wi-Fi
+	//Bluetooth
 	private JLabel bluetoothImage = new JLabel (new ImageIcon("settings/bluetooth.png"));
 	private JLabel bluetooth = new JLabel ("  Bluetooth");
 	
@@ -48,6 +48,22 @@ public class Settings extends JPanel{
 	//Fond d'écran
 	private JLabel fondImage = new JLabel (new ImageIcon("settings/fondecran.png"));
 	private JLabel fond = new JLabel ("  Fond d'écran");
+	
+	//Général
+	private JLabel generalImage = new JLabel (new ImageIcon("settings/general.png"));
+	private JLabel general = new JLabel ("  Général");
+	
+	//Notes
+	private JLabel notesImage = new JLabel (new ImageIcon("settings/notes.png"));
+	private JLabel notes = new JLabel ("  Notes");
+	
+	//Notifications
+	private JLabel notificationsImage = new JLabel (new ImageIcon("settings/notifications.png"));
+	private JLabel notif = new JLabel ("  Notifications");
+	
+	//Sons
+	private JLabel sonsImage = new JLabel (new ImageIcon("settings/sons.png"));
+	private JLabel sons = new JLabel ("  Sons");
 	
 	private JScrollPane scroll;
 	
@@ -110,6 +126,29 @@ public Settings (){
 	op.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	op.setFont(font);
 	
+	imagesJPanel.add(generalImage);
+	imagesJPanel.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+	imagesJPanel.add(general);
+	general.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+	general.setFont(font);
+	
+	imagesJPanel.add(notesImage);
+	notesImage.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+	imagesJPanel.add(notes);
+	notes.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+	notes.setFont(font);
+	
+	imagesJPanel.add(notificationsImage);
+	notificationsImage.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+	imagesJPanel.add(notif);
+	notif.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+	notif.setFont(font);
+	
+	imagesJPanel.add(sonsImage);
+	sonsImage.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+	imagesJPanel.add(sons);
+	sons.setBorder(BorderFactory.createLineBorder(Color.lightGray));
+	sons.setFont(font);
 	
 	imagesJPanel.add(fondImage);
 	fondImage.setBorder(BorderFactory.createLineBorder(Color.lightGray));

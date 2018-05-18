@@ -2,12 +2,17 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener; 
+
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import org.omg.CORBA.PRIVATE_MEMBER;
 
 // source : https://openclassrooms.com/courses/apprenez-a-programmer-en-java/tp-une-calculatrice
 
@@ -18,30 +23,39 @@ public class CalculatriceJPanel extends JPanel {
   private double resultat;
   private boolean clicOperateur = false, update = false;
   private String operateur = "";
+  private Font police = new Font("Arial", Font.BOLD, 60);
+  private Font policeClavier = new Font("Arial", Font.BOLD, 20);
   
   public CalculatriceJPanel(){
-  
+	  setLayout(new BorderLayout());
 	  initComposant();
   }
       
   private void initComposant(){
 	 //Ecran
-    Font police = new Font("Arial", Font.BOLD, 60);
     ecran = new JLabel("0");
     ecran.setForeground(Color.white);
     ecran.setFont(police);
-    ecran.setPreferredSize(new Dimension(220, 20));
     JPanel panEcran = new JPanel();
-    panEcran.add(ecran,BorderLayout.NORTH);
+    panEcran.add(Box.createRigidArea(new Dimension (0,41)),BorderLayout.NORTH);
+    panEcran.add(ecran);
+    panEcran.add(Box.createRigidArea(new Dimension (0,41)),BorderLayout.NORTH);
+    panEcran.setLayout(new GridLayout(3,0));
     panEcran.setBackground(Color.black);
+    add(panEcran,BorderLayout.NORTH);
     
     //Opérateurs
-    JPanel operateur = new JPanel();  
+    JPanel operateur = new JPanel(); 
+    operateur.setPreferredSize(new Dimension (110,200));
+    operateur.setLayout(new GridLayout(5,0));
     add(operateur,BorderLayout.EAST);
+    
     //Chiffres
     JPanel chiffre = new JPanel();
-
-    add(operateur,BorderLayout.CENTER);
+    chiffre.setLayout(new GridLayout(4,4));
+    add(chiffre,BorderLayout.CENTER);
+    
+    
     //On parcourt le tableau initialisé afin de créer nos boutons
     for(int i = 0; i < tab_string.length; i++){
       tab_button[i] = new JButton(tab_string[i]);
@@ -49,32 +63,44 @@ public class CalculatriceJPanel extends JPanel {
         case 11 :
           tab_button[i].addActionListener(new EgalListener());
           chiffre.add(tab_button[i]);
+          tab_button[i].setFont(policeClavier);
           break;
         case 12 :
           tab_button[i].setForeground(Color.red);
           tab_button[i].addActionListener(new ResetListener());
           operateur.add(tab_button[i]);
+          tab_button[i].setBackground(Color.orange);
+          tab_button[i].setFont(policeClavier);
           break;
         case 13 :
           tab_button[i].addActionListener(new PlusListener());
           operateur.add(tab_button[i]);
+          tab_button[i].setBackground(Color.orange);
+          tab_button[i].setFont(policeClavier);
           break;
         case 14 :
           tab_button[i].addActionListener(new MoinsListener());
           operateur.add(tab_button[i]);
+          tab_button[i].setBackground(Color.orange);
+          tab_button[i].setFont(policeClavier);
           break;	
         case 15 :	
           tab_button[i].addActionListener(new MultiListener());
           operateur.add(tab_button[i]);
+          tab_button[i].setBackground(Color.orange);
+          tab_button[i].setFont(policeClavier);
           break;
         case 16 :
           tab_button[i].addActionListener(new DivListener());
           operateur.add(tab_button[i]);
+          tab_button[i].setBackground(Color.orange);
+          tab_button[i].setFont(policeClavier);
           break;
         default :
           //Par défaut, ce sont les premiers éléments du tableau donc des chiffres, on affecte alors le bon listener
           chiffre.add(tab_button[i]);
           tab_button[i].addActionListener(new ChiffreListener());
+          tab_button[i].setFont(policeClavier);
           break;
       }
     }
@@ -207,7 +233,7 @@ public class CalculatriceJPanel extends JPanel {
       update = true;
       resultat = 0;
       operateur = "";
-      ecran.setText("");
+      ecran.setText("0");
     }
   }      
 }

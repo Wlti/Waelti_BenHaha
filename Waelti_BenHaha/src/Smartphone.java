@@ -130,7 +130,17 @@ public class Smartphone extends JFrame {
             	CardLayout cl = (CardLayout)(cards.getLayout());
      		    cl.show(cards, ECRANACCUEIL);
             }
+            
+            public void mouseEntered(MouseEvent e) {
+        		panelBoutonHomeJPanel.add(launcherOver,BorderLayout.CENTER);
+		    }
+            
+            public void mousePressed(MouseEvent e) {
+        		panelBoutonHomeJPanel.add(launcher,BorderLayout.CENTER);
+		    }
         });
+		
+		
 		
 		//Créé deux boxes vides pour agrandir le bas du natel
 		panelBoutonHomeJPanel.setBackground(Color.black);
