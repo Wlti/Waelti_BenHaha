@@ -35,18 +35,44 @@ public class Smartphone extends JFrame {
 	//Permettre le déplacement du smartphone
 	DeplacementsSmartphone SMMove = new DeplacementsSmartphone(this);
 	
-	//Contenu de l'écran d'accueil
-	private JLabel boutonContacts = new JLabel(new ImageIcon ("images/Contacts.png"));
-	private JLabel boutonReset = new JLabel(new ImageIcon ("images/Settings.png"));
-	private JLabel boutonHeure = new JLabel(new ImageIcon ("images/heure.png"));
-	private JLabel boutonPhotos = new JLabel(new ImageIcon ("images/Gallery.png"));	
-	private JLabel boutonEteindre = new JLabel(new ImageIcon ("images/Exit.png"));	
-	private JLabel boutonCalculatrice = new JLabel(new ImageIcon ("images/calculatrice.png"));
-	private JLabel boutonFacebook = new JLabel(new ImageIcon ("images/facebook.png"));
-	private ImageIcon launcherInit = new ImageIcon("images/launcher.png");
-	private ImageIcon launcherOver = new ImageIcon("images/launcherOver.png");
+	//Bouton contact
+	private ImageIcon contact = new ImageIcon("images/contacts.png");
+	private ImageIcon contactOver = new ImageIcon("images/contactsOver.png");
+	private JLabel boutonContacts = new JLabel(contact);
+	
+	//Bouton reset
+	private ImageIcon reset = new ImageIcon("images/settings.png");
+	private ImageIcon resetOver = new ImageIcon("images/settingsOver.png");
+	private JLabel boutonReset = new JLabel(reset);
+	
+	//Bouton heure
+	private ImageIcon heure = new ImageIcon("images/heure.png");
+	private ImageIcon heureOver = new ImageIcon("images/heureOver.png");
+	private JLabel boutonHeure = new JLabel(heure);
+	
+	//Bouton photos
+	private ImageIcon photos = new ImageIcon("images/Gallery.png");
+	private ImageIcon photosOver = new ImageIcon("images/GalleryOver.png");
+	private JLabel boutonPhotos = new JLabel(photos);	
+	
+	//Bouton eteindre
+	private ImageIcon eteindre = new ImageIcon("images/Exit.png");
+	private ImageIcon eteindreOver = new ImageIcon("images/ExitOver.png");
+	private JLabel boutonEteindre = new JLabel(eteindre);	
+	
+	//Bouton Calculatrice
+	private ImageIcon calculatrice = new ImageIcon("images/calculatrice.png");
+	private ImageIcon calculatriceOver = new ImageIcon("images/calculatriceOver.png");
+	private JLabel boutonCalculatrice = new JLabel(calculatrice);
+	
+	//Bouton Facebook
+	private ImageIcon facebook = new ImageIcon("images/facebook.png");
+	private ImageIcon facebookOver = new ImageIcon("images/facebookOver.png");
+	private JLabel boutonFacebook = new JLabel(facebook);
 	
 	//Bouton Home
+	private ImageIcon launcherInit = new ImageIcon("images/launcher.png");
+	private ImageIcon launcherOver = new ImageIcon("images/launcherOver.png");
 	private JLabel launcher = new JLabel(new ImageIcon ("images/launcher.png"));	
 	
 	//Coque du natel
@@ -180,6 +206,16 @@ public class Smartphone extends JFrame {
             	CardLayout cl = (CardLayout)(cards.getLayout());
       		   	cl.show(cards, ECRANCONTACTS);
             }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            	//Affiche l'écran d'accueil
+            	boutonContacts.setIcon(contactOver);
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+            	//Affiche l'écran d'accueil
+            	boutonContacts.setIcon(contact);
+            }
         });	
 		
 		panel.add(boutonPhotos);
@@ -188,6 +224,16 @@ public class Smartphone extends JFrame {
             public void mouseClicked(MouseEvent e) {
             	CardLayout cl = (CardLayout)(cards.getLayout());
       		   	cl.show(cards, ECRANPHOTOS);
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            	//Affiche l'écran d'accueil
+            	boutonPhotos.setIcon(photosOver);
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+            	//Affiche l'écran d'accueil
+            	boutonPhotos.setIcon(photos);
             }
         });
 		
@@ -198,6 +244,16 @@ public class Smartphone extends JFrame {
             	CardLayout cl = (CardLayout)(cards.getLayout());
      		    cl.show(cards, ECRANCALCULATRICE);
             }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            	//Affiche l'écran d'accueil
+            	boutonCalculatrice.setIcon(calculatriceOver);
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+            	//Affiche l'écran d'accueil
+            	boutonCalculatrice.setIcon(calculatrice);
+            }
         });
 		
 		
@@ -207,6 +263,16 @@ public class Smartphone extends JFrame {
             public void mouseClicked(MouseEvent e) {
             	CardLayout cl = (CardLayout)(cards.getLayout());
        		   	cl.show(cards, ECRANHEURE);
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            	//Affiche l'écran d'accueil
+            	boutonHeure.setIcon(heureOver);
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+            	//Affiche l'écran d'accueil
+            	boutonHeure.setIcon(heure);
             }
         });	
 		
@@ -219,6 +285,16 @@ public class Smartphone extends JFrame {
       		   	
       		   	
             }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            	//Affiche l'écran d'accueil
+            	boutonFacebook.setIcon(facebookOver);
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+            	//Affiche l'écran d'accueil
+            	boutonFacebook.setIcon(facebook);
+            }
         });	
 	
 		panel.add(boutonReset);	
@@ -228,6 +304,16 @@ public class Smartphone extends JFrame {
             	CardLayout cl = (CardLayout)(cards.getLayout());
       		   	cl.show(cards, ECRANFONDECRAN);
       		   	
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            	//Affiche l'écran d'accueil
+            	boutonReset.setIcon(resetOver);
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+            	//Affiche l'écran d'accueil
+            	boutonReset.setIcon(reset);
             }
         });	
 		
@@ -239,6 +325,16 @@ public class Smartphone extends JFrame {
             	System.exit(1);
             	dispose();
             	
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            	//Affiche l'écran d'accueil
+            	boutonEteindre.setIcon(eteindreOver);
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+            	//Affiche l'écran d'accueil
+            	boutonEteindre.setIcon(eteindre);
             }
         });
 	
