@@ -19,6 +19,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class PhotosJPanel extends JPanel {
 	
+
+	
 	//Images par défaut	
 	Photo image1 = new Photo("art", "photos/art.jpg");
 	Photo image2 = new Photo("norvegian", "photos/norvegien.jpg");
@@ -39,6 +41,7 @@ public class PhotosJPanel extends JPanel {
     private Font font = new Font("Arial",Font.BOLD,20);
      
     public PhotosJPanel() {
+    	
     //Design, structure
       setLayout(new BorderLayout());
       setBackground(Color.black);
