@@ -18,16 +18,18 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  
 
 public class PhotosJPanel extends JPanel {
+	
 	//Images par défaut	
-		
-	private JLabel image1 = new JLabel (new ImageIcon("photos/art.jpg"));
-	private JLabel image2 = new JLabel (new ImageIcon("photos/norvegien.jpg"));
-	private JLabel image3 = new JLabel (new ImageIcon("photos/chateau.jpg"));
-	private JLabel image4 = new JLabel (new ImageIcon("photos/inseparables.jpg"));
-	private JLabel image6 = new JLabel (new ImageIcon("photos/lac.jpg"));
-	private JLabel image7 = new JLabel (new ImageIcon("photos/love.jpg"));
-	private JLabel image8 = new JLabel (new ImageIcon("photos/maisons.jpg"));
-	private JLabel image9 = new JLabel (new ImageIcon("photos/vacances.jpg"));
+	Photo image1 = new Photo("art", "photos/art.jpg");
+	Photo image2 = new Photo("norvegian", "photos/norvegien.jpg");
+	Photo image3 = new Photo("chateau", "photos/chateau.jpg");
+	Photo image4 = new Photo("inseparables", "photos/inseparables.jpg");
+	Photo image6 = new Photo("lac", "photos/lac.jpg");
+	Photo image7 = new Photo("love", "photos/love.jpg");
+	Photo image8 = new Photo("maisons", "photos/maisons.jpg");
+	Photo image9 = new Photo("vacances", "photos/vacances.jpg");
+	
+	//Ecran
     private JPanel imagesJPanel = new JPanel ();
     private JPanel ajoutJPanel = new JPanel ();
     private JScrollPane scroll;
@@ -37,6 +39,7 @@ public class PhotosJPanel extends JPanel {
     private Font font = new Font("Arial",Font.BOLD,20);
      
     public PhotosJPanel() {
+    //Design, structure
       setLayout(new BorderLayout());
       setBackground(Color.black);
       add(gallerieButton,BorderLayout.NORTH);
@@ -44,10 +47,11 @@ public class PhotosJPanel extends JPanel {
       gallerieButton.setAlignmentX(CENTER_ALIGNMENT);
       gallerieButton.setFont(font);
       gallerieButton.setHorizontalAlignment((int) CENTER_ALIGNMENT);
-     
       imagesJPanel.setLayout(new GridLayout(0,1,5,5));
       imagesJPanel.setBackground(Color.black);
       add(imagesJPanel,BorderLayout.CENTER);
+      
+      //ajout des images par défaut
       imagesJPanel.add(image1);
       imagesJPanel.add(image2);
       imagesJPanel.add(image3);
@@ -60,30 +64,27 @@ public class PhotosJPanel extends JPanel {
       add(scroll);
       ajouterImage.setVerticalAlignment((int) CENTER_ALIGNMENT);
       
+      
+      
+      //Ajouter une image
       add(ajoutJPanel,BorderLayout.SOUTH);
       ajoutJPanel.add(ajouterImage);
       ajouterImage.addMouseListener(new MouseAdapter() {
     	  @Override
           public void mouseClicked(MouseEvent e) {
-          	//Ouvrir un fichier
-    		  JTextArea area = null; 
     		  JPanel panel = new JPanel();
-    		  panel.setLayout(new BorderLayout());         
-    		  ImageIcon open = new ImageIcon("open.png"); 
-    	        JToolBar toolbar = new JToolBar();         
-    	        JButton openb = new JButton(open); 
-    		 openb.addActionListener(new OuvrirFichier ());
-    		  
+    		  panel.setLayout(new BorderLayout()); 
     		  JFileChooser fileopen = new JFileChooser(); 
-    		  FileNameExtensionFilter filter = new FileNameExtensionFilter("images png", "png");  
-    		  FileNameExtensionFilter filter2 = new FileNameExtensionFilter("images jpg", "jpg"); 
+    		  FileNameExtensionFilter filter = new FileNameExtensionFilter("Images png", "png");  
+    		  FileNameExtensionFilter filter2 = new FileNameExtensionFilter("Images jpg", "jpg"); 
     		  fileopen.addChoosableFileFilter(filter); 
     		  fileopen.addChoosableFileFilter(filter2); 
     		  int ret = fileopen.showDialog(panel, "Open file"); 
     		  if (ret == JFileChooser.APPROVE_OPTION) {      
-    			  File file = fileopen.getSelectedFile();      
-    			  String text = readFile(file);      
-    			  area.setText(text);  } 
+    			  File file = fileopen.getSelectedFile(); 
+    			  Photo imagePhoto = new Photo (file);
+    			  imagesJPanel.add(imagePhoto);
+    			   } 
           }
     	  
 	});
@@ -93,6 +94,8 @@ public class PhotosJPanel extends JPanel {
       ajoutJPanel.setBackground(Color.black);
       
     }
+    
+    //Ajouter une image
     public String readFile (File file) { 
     	 
         StringBuffer fileBuffer = null;     
@@ -114,23 +117,11 @@ public class PhotosJPanel extends JPanel {
         return fileString;     
         } 
    
-   }
-
-class OuvrirFichier implements ActionListener{
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		
-		
-		
-	}
+   
 
 
-public void mouseClick(MouseEvent e) {
-	//Quand on click sur une image
-	
-	
 }
-}
+
 
 
 

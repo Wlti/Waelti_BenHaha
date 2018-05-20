@@ -41,9 +41,9 @@ public class Smartphone extends JFrame {
 	private JLabel boutonContacts = new JLabel(contact);
 	
 	//Bouton reset
-	private ImageIcon reset = new ImageIcon("images/settings.png");
-	private ImageIcon resetOver = new ImageIcon("images/settingsOver.png");
-	private JLabel boutonReset = new JLabel(reset);
+	private ImageIcon settings = new ImageIcon("images/settings.png");
+	private ImageIcon settingsOver = new ImageIcon("images/settingsOver.png");
+	private JLabel boutonSettings = new JLabel(settings);
 	
 	//Bouton heure
 	private ImageIcon heure = new ImageIcon("images/heure.png");
@@ -141,6 +141,7 @@ public class Smartphone extends JFrame {
 		setUndecorated(true);
 		setBackground(new Color(1.0f,1.0f,1.0f,0.0f));
 		
+		//Emplacement du natel au milieu
 		Toolkit toolkit = getToolkit();         
 		Dimension size = toolkit.getScreenSize();         
 		setLocation(size.width/2 - getWidth()/2,    size.height/2 - getHeight()/2);
@@ -172,18 +173,14 @@ public class Smartphone extends JFrame {
 	            launcher.setIcon(launcherInit);
             }
            
-            
-         
         });
-		
-		
 		
 		//Créé deux boxes vides pour agrandir le bas du natel
 		panelBoutonHomeJPanel.setBackground(Color.black);
 		panelBoutonHomeJPanel.add(Box.createRigidArea(new Dimension (0,41)),BorderLayout.SOUTH);
 		panelBoutonHomeJPanel.add(Box.createRigidArea(new Dimension (0,41)),BorderLayout.NORTH);
 		
-		//Ecran au centre
+		//Ecran au centre (jeu de cartes)
 		add(cards, BorderLayout.CENTER);
 		panel.setLayout(new GridLayout(0,3,10,10));
 		
@@ -192,7 +189,7 @@ public class Smartphone extends JFrame {
 		cards.add(new CalculatriceJPanel (),ECRANCALCULATRICE);
 		cards.add(new ContactsJPanel(),ECRANCONTACTS);
 		cards.add(new PhotosJPanel (), ECRANPHOTOS);
-		cards.add(new Settings (),ECRANFONDECRAN);
+		cards.add(new Settings (this),ECRANFONDECRAN);
 		cards.add(new Heure(),ECRANHEURE);
 		cards.add(new Facebook(),ECRANFACEBOOK);
 		
@@ -297,8 +294,8 @@ public class Smartphone extends JFrame {
             }
         });	
 	
-		panel.add(boutonReset);	
-		boutonReset.addMouseListener(new MouseAdapter() {
+		panel.add(boutonSettings);	
+		boutonSettings.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
             	CardLayout cl = (CardLayout)(cards.getLayout());
@@ -308,12 +305,12 @@ public class Smartphone extends JFrame {
             @Override
             public void mouseEntered(MouseEvent e) {
             	//Affiche l'écran d'accueil
-            	boutonReset.setIcon(resetOver);
+            	boutonSettings.setIcon(settingsOver);
             }
             @Override
             public void mouseExited(MouseEvent e) {
             	//Affiche l'écran d'accueil
-            	boutonReset.setIcon(reset);
+            	boutonSettings.setIcon(settings);
             }
         });	
 		
@@ -338,10 +335,10 @@ public class Smartphone extends JFrame {
             }
         });
 	
-	}
-
 	
-		
+	
+	
+	}	
 	
 }
 

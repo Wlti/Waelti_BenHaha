@@ -9,11 +9,16 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -74,7 +79,7 @@ public class Settings extends JPanel{
 
     private JLabel gallerieButton = new JLabel("Settings");
 
-public Settings (){
+public Settings (Smartphone app){
 	setLayout(new BorderLayout());
 	add(gallerieButton,BorderLayout.NORTH);
 	gallerieButton.setAlignmentX(CENTER_ALIGNMENT);
@@ -140,27 +145,13 @@ public Settings (){
 	sonsImage.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	imagesJPanel.add(sons);
 	sons.setFont(font);
-	sons.addMouseListener(new MouseAdapter() {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-        	//Faire du bruit
-        	
-        	
-        }
-    });	
+	
 	
 	imagesJPanel.add(fondImage);
 	fondImage.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	fond.setFont(font);
 	imagesJPanel.add(fond);
-	fondImage.addMouseListener(new MouseAdapter() {
-        @Override
-        public void mouseClicked(MouseEvent e) {
-        	//Changer le fond d'écran
-        	
-        	
-        }
-    });	
+	
 	
 	
     scroll = new JScrollPane(imagesJPanel);
