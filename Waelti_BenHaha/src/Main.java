@@ -7,5 +7,7 @@ public class Main {
 		Smartphone mySmartphone = new Smartphone();
 		mySmartphone.setVisible(true);
 		mySmartphone.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
 	}
 }

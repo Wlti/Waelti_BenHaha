@@ -22,7 +22,8 @@ public class PhotosJPanel extends JPanel {
 
 	
 	//Images par défaut	
-
+	ArrayList <String> mesPath;
+	
 	
 	
 	//Ecran
@@ -34,7 +35,7 @@ public class PhotosJPanel extends JPanel {
     private JLabel gallerieButton = new JLabel("Gallerie photos");
     private Font font = new Font("Arial",Font.BOLD,20);
      
-    public PhotosJPanel() {
+    public PhotosJPanel(ListePhotos listePhotos) {
     	
     //Design, structure
       setLayout(new BorderLayout());
@@ -48,15 +49,14 @@ public class PhotosJPanel extends JPanel {
       imagesJPanel.setBackground(Color.black);
       add(imagesJPanel,BorderLayout.CENTER);
       
-      //ajout des images par défaut
-     /* imagesJPanel.add(image1);
-      imagesJPanel.add(image2);
-      imagesJPanel.add(image3);
-      imagesJPanel.add(image4);
-      imagesJPanel.add(image6);
-      imagesJPanel.add(image7);
-      imagesJPanel.add(image8);
-      imagesJPanel.add(image9);*/
+      //ajout des images
+      mesPath = listePhotos.getListePhotos();
+      
+      for(String a:mesPath){
+    	  Photo photo = new Photo (a);
+    	  imagesJPanel.add(photo);
+      }
+     
       scroll = new JScrollPane(imagesJPanel);
       add(scroll);
       ajouterImage.setVerticalAlignment((int) CENTER_ALIGNMENT);
@@ -65,7 +65,7 @@ public class PhotosJPanel extends JPanel {
       
       //Ajouter une image
       add(ajoutJPanel,BorderLayout.SOUTH);
-     /* ajoutJPanel.add(ajouterImage);
+     ajoutJPanel.add(ajouterImage);
       ajouterImage.addMouseListener(new MouseAdapter() {
     	  @Override
           public void mouseClicked(MouseEvent e) {
@@ -84,7 +84,7 @@ public class PhotosJPanel extends JPanel {
     			   } 
           }
     	  
-	});*/
+	});
       ajoutJLabel.setForeground(Color.white);
       ajoutJLabel.setFont(font);
       ajoutJPanel.add(ajoutJLabel);
