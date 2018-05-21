@@ -19,12 +19,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class PhotosJPanel extends JPanel {
 	
-
-	
-	//Images par défaut	
+	//Images désérialisées	
 	ArrayList <String> mesPath;
-	
-	
 	
 	//Ecran
     private JPanel imagesJPanel = new JPanel ();
@@ -53,7 +49,7 @@ public class PhotosJPanel extends JPanel {
       mesPath = listePhotos.getListePhotos();
       
       for(String a:mesPath){
-    	  Photo photo = new Photo (a);
+    	  Photo photo = new Photo (a,listePhotos,imagesJPanel);
     	  imagesJPanel.add(photo);
       }
      
@@ -79,7 +75,8 @@ public class PhotosJPanel extends JPanel {
     		  int ret = fileopen.showDialog(panel, "Open file"); 
     		  if (ret == JFileChooser.APPROVE_OPTION) {      
     			  File file = fileopen.getSelectedFile(); 
-    			  Photo imagePhoto = new Photo (file);
+    			  listePhotos.addPath(file.getAbsolutePath());
+    			  Photo imagePhoto = new Photo (file.getAbsolutePath(),listePhotos,imagesJPanel);
     			  imagesJPanel.add(imagePhoto);
     			   } 
           }
@@ -92,7 +89,7 @@ public class PhotosJPanel extends JPanel {
       
     }
     
-    //Ajouter une image
+    //Ajouter une image (suite)
     public String readFile (File file) { 
     	 
         StringBuffer fileBuffer = null;     

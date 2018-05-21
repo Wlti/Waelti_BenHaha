@@ -10,8 +10,15 @@ import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -26,6 +33,8 @@ import javax.swing.border.Border;
 
 
 public class Settings extends JPanel{
+	
+		
 	//Mode Avion
 	private JLabel avionImage = new JLabel (new ImageIcon("settings/avion.png"));
 	private JLabel avion = new JLabel ("  Mode Avion");
@@ -78,8 +87,12 @@ public class Settings extends JPanel{
 	private JPanel imagesJPanel = new JPanel();
 
     private JLabel gallerieButton = new JLabel("Settings");
+    private ListePhotos listePhotos;
 
-public Settings (Smartphone app){
+public Settings (ListePhotos listePhotos){
+	
+	
+
 	setLayout(new BorderLayout());
 	add(gallerieButton,BorderLayout.NORTH);
 	gallerieButton.setAlignmentX(CENTER_ALIGNMENT);
@@ -141,6 +154,7 @@ public Settings (Smartphone app){
 	imagesJPanel.add(notif);
 	notif.setFont(font);
 	
+	
 	imagesJPanel.add(sonsImage);
 	sonsImage.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	imagesJPanel.add(sons);
@@ -151,6 +165,7 @@ public Settings (Smartphone app){
 	fondImage.setBorder(BorderFactory.createLineBorder(Color.lightGray));
 	fond.setFont(font);
 	imagesJPanel.add(fond);
+
 	
 	
 	
@@ -159,6 +174,5 @@ public Settings (Smartphone app){
  
 	
 }
-
 
 }

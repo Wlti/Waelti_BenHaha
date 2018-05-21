@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.AbstractButton;
@@ -41,7 +42,7 @@ public class Smartphone extends JFrame implements Serializable{
 		
 	//Liste de path pour créer les images
 	ListePhotos listePhotos;
-	
+		
 	//Permettre le déplacement du smartphone
 	DeplacementsSmartphone SMMove = new DeplacementsSmartphone(this);
 	
@@ -152,7 +153,8 @@ public class Smartphone extends JFrame implements Serializable{
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
-			
+		
+		
 		//Déplacements smartphone
 		addMouseListener(SMMove);
 		addMouseMotionListener(SMMove);
@@ -210,12 +212,18 @@ public class Smartphone extends JFrame implements Serializable{
 		cards.add(new CalculatriceJPanel (),ECRANCALCULATRICE);
 		cards.add(new ContactsJPanel(),ECRANCONTACTS);
 		cards.add(new PhotosJPanel (listePhotos), ECRANPHOTOS);
-		cards.add(new Settings (this),ECRANFONDECRAN);
+		cards.add(new Settings (listePhotos),ECRANFONDECRAN);
 		cards.add(new Heure(),ECRANHEURE);
 		cards.add(new Facebook(),ECRANFACEBOOK);
 		
 	 
+		
+		
+		
+		
 		//Ajout des éléments sur l'écran et leur écouteur :
+		
+		
 		
 		panel.add(boutonContacts);	
 		boutonContacts.addMouseListener(new MouseAdapter() {
@@ -342,6 +350,13 @@ public class Smartphone extends JFrame implements Serializable{
 			@Override
             public void mouseClicked(MouseEvent e) {
             	
+            	//Enregistre ma liste de photos avant de quitter
+            	try {
+					serializeListePhotos(listePhotos);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
             	System.exit(1);
             	dispose();
             	
@@ -359,6 +374,9 @@ public class Smartphone extends JFrame implements Serializable{
         });
 
 	}
+	
+	//Permet de sérialiser ou désérialiser mes photos
+	
 	public static void serializeListePhotos(ListePhotos listePhotos) throws IOException {		
 		FileOutputStream fichier = new FileOutputStream("photoSerialisation/photo.ser");
 		BufferedOutputStream bfichier = new BufferedOutputStream (fichier);
