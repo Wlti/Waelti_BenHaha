@@ -13,8 +13,14 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import javax.imageio.ImageIO;
 import javax.swing.AbstractButton;
@@ -31,6 +37,13 @@ import javax.swing.JTextField;
 
 
 public class Smartphone extends JFrame {
+	
+	String [] tab = {"photos/art.jpg","photos/norvegien.jpg","photos/chateau.jpg","photos/inseparables.jpg","photos/lac.jpg","photos/love.jpg",
+			"photos/maisons.jpg","photos/vacances.jpg"};
+	
+	ListePhotos image1 = new ListePhotos(tab);
+	
+	
 	
 	//Permettre le déplacement du smartphone
 	DeplacementsSmartphone SMMove = new DeplacementsSmartphone(this);
@@ -317,8 +330,16 @@ public class Smartphone extends JFrame {
 
 		panel.add(boutonEteindre);	
 		boutonEteindre.addMouseListener(new MouseAdapter() {
-            @Override
+            @SuppressWarnings("static-access")
+			@Override
             public void mouseClicked(MouseEvent e) {
+            	try {
+            		serializeListePhotos(image1);
+            
+            	} catch (IOException e1) {
+            		// TODO Auto-generated catch block
+            		e1.printStackTrace();
+            	}
             	System.exit(1);
             	dispose();
             	
@@ -334,11 +355,31 @@ public class Smartphone extends JFrame {
             	boutonEteindre.setIcon(eteindre);
             }
         });
+
+	}
+		public static void serializeListePhotos(ListePhotos listePhotos) throws IOException {		
+			//enregistre ma photo dans le fichier photo.ser
+			FileOutputStream fichier = new FileOutputStream("photoSerialisation/photo.ser");
+			BufferedOutputStream bfichier = new BufferedOutputStream (fichier);
+			ObjectOutputStream fichierObjectSerialize = new ObjectOutputStream(bfichier);
+			fichierObjectSerialize.writeObject(listePhotos); 
+			fichierObjectSerialize.close();
+		}
+
+		public static void deserializeListePhotos(String path)  throws IOException, ClassNotFoundException {		
+			//lit la photo enregistrée dans photo.ser
+			Photo temporaire;
+			FileInputStream fichier = new FileInputStream(path);						
+			BufferedInputStream bfichier = new BufferedInputStream (fichier);
+			ObjectInputStream lectureObjet = new ObjectInputStream(bfichier);
+			temporaire=(Photo) lectureObjet.readObject();
+			lectureObjet.close();
+			
+		}
 	
 	
 	
-	
-	}	
+		
 	
 }
 

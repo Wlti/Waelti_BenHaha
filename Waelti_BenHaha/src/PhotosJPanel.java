@@ -22,14 +22,8 @@ public class PhotosJPanel extends JPanel {
 
 	
 	//Images par défaut	
-	Photo image1 = new Photo("art", "photos/art.jpg");
-	Photo image2 = new Photo("norvegian", "photos/norvegien.jpg");
-	Photo image3 = new Photo("chateau", "photos/chateau.jpg");
-	Photo image4 = new Photo("inseparables", "photos/inseparables.jpg");
-	Photo image6 = new Photo("lac", "photos/lac.jpg");
-	Photo image7 = new Photo("love", "photos/love.jpg");
-	Photo image8 = new Photo("maisons", "photos/maisons.jpg");
-	Photo image9 = new Photo("vacances", "photos/vacances.jpg");
+
+	
 	
 	//Ecran
     private JPanel imagesJPanel = new JPanel ();
@@ -55,14 +49,14 @@ public class PhotosJPanel extends JPanel {
       add(imagesJPanel,BorderLayout.CENTER);
       
       //ajout des images par défaut
-      imagesJPanel.add(image1);
+     /* imagesJPanel.add(image1);
       imagesJPanel.add(image2);
       imagesJPanel.add(image3);
       imagesJPanel.add(image4);
       imagesJPanel.add(image6);
       imagesJPanel.add(image7);
       imagesJPanel.add(image8);
-      imagesJPanel.add(image9);
+      imagesJPanel.add(image9);*/
       scroll = new JScrollPane(imagesJPanel);
       add(scroll);
       ajouterImage.setVerticalAlignment((int) CENTER_ALIGNMENT);
@@ -71,7 +65,7 @@ public class PhotosJPanel extends JPanel {
       
       //Ajouter une image
       add(ajoutJPanel,BorderLayout.SOUTH);
-      ajoutJPanel.add(ajouterImage);
+     /* ajoutJPanel.add(ajouterImage);
       ajouterImage.addMouseListener(new MouseAdapter() {
     	  @Override
           public void mouseClicked(MouseEvent e) {
@@ -90,7 +84,7 @@ public class PhotosJPanel extends JPanel {
     			   } 
           }
     	  
-	});
+	});*/
       ajoutJLabel.setForeground(Color.white);
       ajoutJLabel.setFont(font);
       ajoutJPanel.add(ajoutJLabel);
