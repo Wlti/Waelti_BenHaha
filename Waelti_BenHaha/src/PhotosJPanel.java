@@ -25,11 +25,9 @@ public class PhotosJPanel extends JPanel {
 	//Ecran
     private JPanel imagesJPanel = new JPanel ();
     private JPanel ajoutJPanel = new JPanel ();
-    private JLabel ajoutContact = new JLabel("Ajouter un contact");
     private JLabel ajoutContactImage = new JLabel (new ImageIcon("photos/addContact.png"));
     private JScrollPane scroll;
-    private JLabel ajouterImage = new JLabel (new ImageIcon("photos/plus.png"));
-    private JLabel ajoutJLabel = new JLabel ("Ajouter une image");
+    private JLabel ajouterImage = new JLabel (new ImageIcon("photos/addImage.png"));
     
     private JLabel gallerieButton = new JLabel("Gallerie photos");
     private Font font = new Font("Arial",Font.BOLD,20);
@@ -60,10 +58,16 @@ public class PhotosJPanel extends JPanel {
       add(scroll);
       ajouterImage.setVerticalAlignment((int) CENTER_ALIGNMENT);
       
+
       ajoutJPanel.setLayout(new FlowLayout());
       
       //Ajouter une image
+      
       add(ajoutJPanel,BorderLayout.SOUTH);
+      
+      ajoutJPanel.add(ajoutContactImage);
+      
+      ajoutJPanel.setBackground(Color.black);
      ajoutJPanel.add(ajouterImage);
       ajouterImage.addMouseListener(new MouseAdapter() {
     	  @Override
@@ -85,10 +89,7 @@ public class PhotosJPanel extends JPanel {
           }
     	  
 	});
-      ajoutJLabel.setForeground(Color.white);
-      ajoutJLabel.setFont(font);
-      ajoutJPanel.add(ajoutJLabel);
-      ajoutJPanel.setBackground(Color.black);
+     
       
     }
     
