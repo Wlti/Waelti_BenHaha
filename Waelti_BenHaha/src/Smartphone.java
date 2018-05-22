@@ -46,45 +46,15 @@ public class Smartphone extends JFrame implements Serializable{
 	//Permettre le déplacement du smartphone
 	DeplacementsSmartphone SMMove = new DeplacementsSmartphone(this);
 	
-	//Bouton contact
-	private ImageIcon contact = new ImageIcon("images/contacts.png");
-	private ImageIcon contactOver = new ImageIcon("images/contactsOver.png");
-	private JLabel boutonContacts = new JLabel(contact);
-	
-	//Bouton reset
-	private ImageIcon settings = new ImageIcon("images/settings.png");
-	private ImageIcon settingsOver = new ImageIcon("images/settingsOver.png");
-	private JLabel boutonSettings = new JLabel(settings);
-	
-	//Bouton heure
-	private ImageIcon heure = new ImageIcon("images/heure.png");
-	private ImageIcon heureOver = new ImageIcon("images/heureOver.png");
-	private JLabel boutonHeure = new JLabel(heure);
-	
-	//Bouton photos
-	private ImageIcon photos = new ImageIcon("images/Gallery.png");
-	private ImageIcon photosOver = new ImageIcon("images/GalleryOver.png");
-	private JLabel boutonPhotos = new JLabel(photos);	
-	
-	//Bouton eteindre
-	private ImageIcon eteindre = new ImageIcon("images/Exit.png");
-	private ImageIcon eteindreOver = new ImageIcon("images/ExitOver.png");
-	private JLabel boutonEteindre = new JLabel(eteindre);	
-	
-	//Bouton Calculatrice
-	private ImageIcon calculatrice = new ImageIcon("images/calculatrice.png");
-	private ImageIcon calculatriceOver = new ImageIcon("images/calculatriceOver.png");
-	private JLabel boutonCalculatrice = new JLabel(calculatrice);
-	
-	//Bouton Facebook
-	private ImageIcon facebook = new ImageIcon("images/facebook.png");
-	private ImageIcon facebookOver = new ImageIcon("images/facebookOver.png");
-	private JLabel boutonFacebook = new JLabel(facebook);
-	
-	//Bouton Home
-	private ImageIcon launcherInit = new ImageIcon("images/launcher.png");
-	private ImageIcon launcherOver = new ImageIcon("images/launcherOver.png");
-	private JLabel launcher = new JLabel(new ImageIcon ("images/launcher.png"));	
+	//Icones
+	MesIcones contactIcones = new MesIcones("images/contacts.png", "images/contactsOver.png");
+	MesIcones settings = new MesIcones("images/settings.png", "images/settingsOver.png");
+	MesIcones heure = new MesIcones("images/heure.png", "images/heureOver.png");
+	MesIcones photos = new MesIcones("images/Gallery.png", "images/GalleryOver.png");
+	MesIcones eteindre = new MesIcones("images/Exit.png", "images/ExitOver.png");
+	MesIcones calculatrice = new MesIcones("images/calculatrice.png", "images/calculatriceOver.png");
+	MesIcones facebook = new MesIcones("images/facebook.png", "images/facebookOver.png");
+	MesIcones launcher = new MesIcones("images/launcher.png", "images/launcherOver.png");
 	
 	//Coque du natel
 	private  JLabel coqueGaucheNatel = new JLabel(new ImageIcon ("images/gauche.png")); 
@@ -123,9 +93,8 @@ public class Smartphone extends JFrame implements Serializable{
 	};
 	
 	//CardLayout me permet de switcher entre les panels
-	JPanel cards = new JPanel (new CardLayout());
-	
 	//Déclaration des identifiants pour chaque panel
+	JPanel cards = new JPanel (new CardLayout());	
 	final static String ECRANACCUEIL = "écran d'accueil";
 	final static String ECRANCALCULATRICE = "écran calculatrice";
 	final static String ECRANPHOTOS = "écran photos";
@@ -177,8 +146,8 @@ public class Smartphone extends JFrame implements Serializable{
 		
 		//Bas du natel
 		panelBoutonHomeJPanel.setLayout(new BorderLayout());
-		panelBoutonHomeJPanel.add(launcher,BorderLayout.CENTER);
-		launcher.addMouseListener(new MouseAdapter() {
+		panelBoutonHomeJPanel.add(launcher.getMonIcone(),BorderLayout.CENTER);
+		launcher.getMonIcone().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
             	//Affiche l'écran d'accueil
@@ -188,12 +157,12 @@ public class Smartphone extends JFrame implements Serializable{
             @Override
             public void mouseEntered(MouseEvent e) {
             	//Affiche l'écran d'accueil
-	            launcher.setIcon(launcherOver);
+	            launcher.getMonIcone().setIcon(launcher.getImageOver());
             }
             @Override
             public void mouseExited(MouseEvent e) {
             	//Affiche l'écran d'accueil
-	            launcher.setIcon(launcherInit);
+	            launcher.getMonIcone().setIcon(launcher.getImage());
             }
            
         });
@@ -224,9 +193,9 @@ public class Smartphone extends JFrame implements Serializable{
 		//Ajout des éléments sur l'écran et leur écouteur :
 		
 		
-		
-		panel.add(boutonContacts);	
-		boutonContacts.addMouseListener(new MouseAdapter() {
+		//Contacts
+		panel.add(contactIcones.getMonIcone());	
+		contactIcones.getMonIcone().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
             	CardLayout cl = (CardLayout)(cards.getLayout());
@@ -235,17 +204,18 @@ public class Smartphone extends JFrame implements Serializable{
             @Override
             public void mouseEntered(MouseEvent e) {
             	//Affiche l'écran d'accueil
-            	boutonContacts.setIcon(contactOver);
+            	contactIcones.getMonIcone().setIcon(contactIcones.getImageOver());
             }
             @Override
             public void mouseExited(MouseEvent e) {
             	//Affiche l'écran d'accueil
-            	boutonContacts.setIcon(contact);
+            	contactIcones.getMonIcone().setIcon(contactIcones.getImage());
             }
         });	
 		
-		panel.add(boutonPhotos);
-		boutonPhotos.addMouseListener(new MouseAdapter() {
+		//Photos
+		panel.add(photos.getMonIcone());
+		photos.getMonIcone().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
             	CardLayout cl = (CardLayout)(cards.getLayout());
@@ -254,17 +224,18 @@ public class Smartphone extends JFrame implements Serializable{
             @Override
             public void mouseEntered(MouseEvent e) {
             	//Affiche l'écran d'accueil
-            	boutonPhotos.setIcon(photosOver);
+            	photos.getMonIcone().setIcon(photos.getImageOver());
             }
             @Override
             public void mouseExited(MouseEvent e) {
             	//Affiche l'écran d'accueil
-            	boutonPhotos.setIcon(photos);
+            	photos.getMonIcone().setIcon(photos.getImage());
             }
         });
 		
-		panel.add(boutonCalculatrice);
-		boutonCalculatrice.addMouseListener(new MouseAdapter() {
+		//Calculatrice
+		panel.add(calculatrice.getMonIcone());
+		calculatrice.getMonIcone().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
             	CardLayout cl = (CardLayout)(cards.getLayout());
@@ -273,18 +244,18 @@ public class Smartphone extends JFrame implements Serializable{
             @Override
             public void mouseEntered(MouseEvent e) {
             	//Affiche l'écran d'accueil
-            	boutonCalculatrice.setIcon(calculatriceOver);
+            	calculatrice.getMonIcone().setIcon(calculatrice.getImageOver());
             }
             @Override
             public void mouseExited(MouseEvent e) {
             	//Affiche l'écran d'accueil
-            	boutonCalculatrice.setIcon(calculatrice);
+            	calculatrice.getMonIcone().setIcon(calculatrice.getImage());
             }
         });
 		
-		
-		panel.add(boutonHeure);	
-		boutonHeure.addMouseListener(new MouseAdapter() {
+		//Horloge
+		panel.add(heure.getMonIcone());	
+		heure.getMonIcone().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
             	CardLayout cl = (CardLayout)(cards.getLayout());
@@ -293,17 +264,18 @@ public class Smartphone extends JFrame implements Serializable{
             @Override
             public void mouseEntered(MouseEvent e) {
             	//Affiche l'écran d'accueil
-            	boutonHeure.setIcon(heureOver);
+            	heure.getMonIcone().setIcon(heure.getImageOver());
             }
             @Override
             public void mouseExited(MouseEvent e) {
             	//Affiche l'écran d'accueil
-            	boutonHeure.setIcon(heure);
+            	heure.getMonIcone().setIcon(heure.getImage());
             }
         });	
 		
-		panel.add(boutonFacebook);	
-		boutonFacebook.addMouseListener(new MouseAdapter() {
+		//Facebook
+		panel.add(facebook.getMonIcone());	
+		facebook.getMonIcone().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
             	CardLayout cl = (CardLayout)(cards.getLayout());
@@ -314,17 +286,18 @@ public class Smartphone extends JFrame implements Serializable{
             @Override
             public void mouseEntered(MouseEvent e) {
             	//Affiche l'écran d'accueil
-            	boutonFacebook.setIcon(facebookOver);
+            	facebook.getMonIcone().setIcon(facebook.getImageOver());
             }
             @Override
             public void mouseExited(MouseEvent e) {
             	//Affiche l'écran d'accueil
-            	boutonFacebook.setIcon(facebook);
+            	facebook.getMonIcone().setIcon(facebook.getImage());
             }
         });	
-	
-		panel.add(boutonSettings);	
-		boutonSettings.addMouseListener(new MouseAdapter() {
+		
+		//Settings
+		panel.add(settings.getMonIcone());	
+		settings.getMonIcone().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
             	CardLayout cl = (CardLayout)(cards.getLayout());
@@ -334,18 +307,18 @@ public class Smartphone extends JFrame implements Serializable{
             @Override
             public void mouseEntered(MouseEvent e) {
             	//Affiche l'écran d'accueil
-            	boutonSettings.setIcon(settingsOver);
+            	settings.getMonIcone().setIcon(settings.getImageOver());
             }
             @Override
             public void mouseExited(MouseEvent e) {
             	//Affiche l'écran d'accueil
-            	boutonSettings.setIcon(settings);
+            	settings.getMonIcone().setIcon(settings.getImage());
             }
         });	
 		
-
-		panel.add(boutonEteindre);	
-		boutonEteindre.addMouseListener(new MouseAdapter() {
+		//Eteindre
+		panel.add(eteindre.getMonIcone());	
+		eteindre.getMonIcone().addMouseListener(new MouseAdapter() {
             @SuppressWarnings("static-access")
 			@Override
             public void mouseClicked(MouseEvent e) {
@@ -364,18 +337,18 @@ public class Smartphone extends JFrame implements Serializable{
             @Override
             public void mouseEntered(MouseEvent e) {
             	//Affiche l'écran d'accueil
-            	boutonEteindre.setIcon(eteindreOver);
+            	eteindre.getMonIcone().setIcon(eteindre.getImageOver());
             }
             @Override
             public void mouseExited(MouseEvent e) {
             	//Affiche l'écran d'accueil
-            	boutonEteindre.setIcon(eteindre);
+            	eteindre.getMonIcone().setIcon(eteindre.getImage());
             }
         });
 
 	}
 	
-	//Permet de sérialiser ou désérialiser mes photos
+	//Permet de sérialiser ou de désérialiser mes photos
 	
 	public static void serializeListePhotos(ListePhotos listePhotos) throws IOException {		
 		FileOutputStream fichier = new FileOutputStream("photoSerialisation/photo.ser");

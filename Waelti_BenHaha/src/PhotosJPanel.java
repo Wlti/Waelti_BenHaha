@@ -28,6 +28,7 @@ public class PhotosJPanel extends JPanel {
     private JScrollPane scroll;
     private JLabel ajouterImage = new JLabel (new ImageIcon("photos/plus.png"));
     private JLabel ajoutJLabel = new JLabel ("Ajouter une image");
+    
     private JLabel gallerieButton = new JLabel("Gallerie photos");
     private Font font = new Font("Arial",Font.BOLD,20);
      
@@ -57,7 +58,7 @@ public class PhotosJPanel extends JPanel {
       add(scroll);
       ajouterImage.setVerticalAlignment((int) CENTER_ALIGNMENT);
       
-      
+      ajoutJPanel.setLayout(new FlowLayout());
       
       //Ajouter une image
       add(ajoutJPanel,BorderLayout.SOUTH);

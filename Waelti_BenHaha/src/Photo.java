@@ -40,7 +40,7 @@ setHorizontalAlignment(CENTER);
 
 addMouseListener(new MouseAdapter() {
 	 public void mouseClicked(MouseEvent e) {
-	System.out.println("Supprimer l'image");
+		 
 	removePhoto(imagesJPanel);
 		
      }
