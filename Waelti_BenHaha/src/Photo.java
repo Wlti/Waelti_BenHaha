@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
@@ -40,8 +41,10 @@ setHorizontalAlignment(CENTER);
 
 addMouseListener(new MouseAdapter() {
 	 public void mouseClicked(MouseEvent e) {
-		 
-	removePhoto(imagesJPanel);
+		 int resultat = JOptionPane.showConfirmDialog(null, "Etes-vous sûr de vouloir supprimer cette image ?");
+			if (resultat == JOptionPane.YES_OPTION){
+				removePhoto(imagesJPanel);	
+			}
 		
      }
 });

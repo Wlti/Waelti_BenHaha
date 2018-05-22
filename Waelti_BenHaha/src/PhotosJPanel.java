@@ -25,6 +25,8 @@ public class PhotosJPanel extends JPanel {
 	//Ecran
     private JPanel imagesJPanel = new JPanel ();
     private JPanel ajoutJPanel = new JPanel ();
+    private JLabel ajoutContact = new JLabel("Ajouter un contact");
+    private JLabel ajoutContactImage = new JLabel (new ImageIcon("photos/addContact.png"));
     private JScrollPane scroll;
     private JLabel ajouterImage = new JLabel (new ImageIcon("photos/plus.png"));
     private JLabel ajoutJLabel = new JLabel ("Ajouter une image");
