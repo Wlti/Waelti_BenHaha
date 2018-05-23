@@ -377,8 +377,8 @@ public class Smartphone extends JFrame implements Serializable{
 							e1.printStackTrace();
 						}
 		            	revalidate();
-		            	//System.exit(1);
-		            	//dispose();
+		            	System.exit(1);
+		            	dispose();
 		            	
 		            }
 		            @Override
