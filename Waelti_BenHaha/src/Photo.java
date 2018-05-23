@@ -50,6 +50,9 @@ addMouseListener(new MouseAdapter() {
 });
 }
 
+public Photo (String path){
+	this.path = path;
+};
 
 public void removePhoto (JPanel imagesJPanel){
 	imagesJPanel.remove(this);

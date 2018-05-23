@@ -55,6 +55,7 @@ public class Smartphone extends JFrame implements Serializable{
 	MesIcones calculatrice = new MesIcones("images/calculatrice.png", "images/calculatriceOver.png");
 	MesIcones facebook = new MesIcones("images/facebook.png", "images/facebookOver.png");
 	MesIcones launcher = new MesIcones("images/launcher.png", "images/launcherOver.png");
+	MesIcones reset = new MesIcones("images/reset.png", "images/resetOver.png");
 	
 	//Coque du natel
 	private  JLabel coqueGaucheNatel = new JLabel(new ImageIcon ("images/gauche.png")); 
@@ -345,7 +346,52 @@ public class Smartphone extends JFrame implements Serializable{
             	eteindre.getMonIcone().setIcon(eteindre.getImage());
             }
         });
-
+		//Reset
+				panel.add(reset.getMonIcone());	
+				reset.getMonIcone().addMouseListener(new MouseAdapter() {
+		          
+					@Override
+		            public void mouseClicked(MouseEvent e) {
+		            	//supprimer le fichier photo.ser
+						File file = new File ("photoSerialisation/photo.ser");
+						file.delete();
+						//réinitialisation des photos
+						ArrayList<String> path = new ArrayList<String>();
+						path.add("images/art.jpg");
+						path.add("images/chateau.jpg");
+						path.add("images/inseparables.jpg");
+						path.add("images/lac.jpg");
+						path.add("images/love.jpg");
+						path.add("images/maisons.jpg");
+						path.add("images/norvegien.jpg");
+						path.add("images/vacances.jpg");
+						
+						ListePhotos nouvelleListePhotos = new ListePhotos(path);
+						
+						
+		            	//Enregistre ma liste de photos avant de quitter
+		            	try {
+							serializeListePhotos(nouvelleListePhotos);
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+		            	revalidate();
+		            	//System.exit(1);
+		            	//dispose();
+		            	
+		            }
+		            @Override
+		            public void mouseEntered(MouseEvent e) {
+		            	//Affiche l'écran d'accueil
+		            	reset.getMonIcone().setIcon(reset.getImageOver());
+		            }
+		            @Override
+		            public void mouseExited(MouseEvent e) {
+		            	//Affiche l'écran d'accueil
+		            	reset.getMonIcone().setIcon(reset.getImage());
+		            }
+		        });
 	}
 	
 	//Permet de sérialiser ou de désérialiser mes photos
