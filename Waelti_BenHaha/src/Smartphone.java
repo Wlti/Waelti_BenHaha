@@ -181,7 +181,8 @@ public class Smartphone extends JFrame implements Serializable{
 		cards.add(panel,ECRANACCUEIL);
 		cards.add(new CalculatriceJPanel (),ECRANCALCULATRICE);
 		cards.add(new ContactsJPanel(),ECRANCONTACTS);
-		cards.add(new PhotosJPanel (listePhotos), ECRANPHOTOS);
+		PhotosJPanel classePhotos = new PhotosJPanel(listePhotos);
+		cards.add(classePhotos, ECRANPHOTOS);
 		cards.add(new Settings (listePhotos),ECRANFONDECRAN);
 		cards.add(new Heure(),ECRANHEURE);
 		cards.add(new Facebook(),ECRANFACEBOOK);
@@ -346,41 +347,40 @@ public class Smartphone extends JFrame implements Serializable{
             	eteindre.getMonIcone().setIcon(eteindre.getImage());
             }
         });
-		//Reset
+		//Reset images
 				panel.add(reset.getMonIcone());	
 				reset.getMonIcone().addMouseListener(new MouseAdapter() {
 		          
-					@Override
-		            public void mouseClicked(MouseEvent e) {
-		            	//supprimer le fichier photo.ser
-						File file = new File ("photoSerialisation/photo.ser");
-						file.delete();
-						//réinitialisation des photos
-						ArrayList<String> path = new ArrayList<String>();
-						path.add("images/art.jpg");
-						path.add("images/chateau.jpg");
-						path.add("images/inseparables.jpg");
-						path.add("images/lac.jpg");
-						path.add("images/love.jpg");
-						path.add("images/maisons.jpg");
-						path.add("images/norvegien.jpg");
-						path.add("images/vacances.jpg");
+					 public void mouseClicked(MouseEvent e) {
+						 
 						
-						ListePhotos nouvelleListePhotos = new ListePhotos(path);
-						
-						
-		            	//Enregistre ma liste de photos avant de quitter
-		            	try {
-							serializeListePhotos(nouvelleListePhotos);
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-		            	revalidate();
-		            	System.exit(1);
-		            	dispose();
-		            	
-		            }
+						 ArrayList<String> path = new ArrayList<String>();
+
+						 path.add("photos/norvegien.jpg");
+						 path.add("photos/art.jpg");
+						 path.add("photos/chateau.jpg");
+						 path.add("photos/inseparables.jpg");
+						 path.add("photos/lac.jpg");
+						 path.add("photos/love.jpg");
+						 path.add("photos/maisons.jpg");
+						 path.add("photos/vacances.jpg");
+						 listePhotos.resetListePhotos(path);
+						 
+			            	
+			            	//Enregistre ma liste de photos avant de quitter
+			            	try {
+								serializeListePhotos(listePhotos);
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+			            	
+			            	classePhotos.setMesPath(path);
+			            	revalidate();
+			            	System.exit(1);
+			            	dispose();
+			            	
+			            }
 		            @Override
 		            public void mouseEntered(MouseEvent e) {
 		            	//Affiche l'écran d'accueil

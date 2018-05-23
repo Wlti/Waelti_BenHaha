@@ -93,7 +93,12 @@ public class PhotosJPanel extends JPanel {
       
     }
     
-    //Ajouter une image (suite)
+    public void setMesPath(ArrayList<String> mesPath) {
+		this.mesPath = mesPath;
+		revalidate();
+	}
+
+	//Ajouter une image (suite)
     public String readFile (File file) { 
     	 
         StringBuffer fileBuffer = null;     
