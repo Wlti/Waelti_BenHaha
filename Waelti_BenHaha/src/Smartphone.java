@@ -56,6 +56,7 @@ public class Smartphone extends JFrame implements Serializable{
 	MesIcones facebook = new MesIcones("images/facebook.png", "images/facebookOver.png");
 	MesIcones launcher = new MesIcones("images/launcher.png", "images/launcherOver.png");
 	MesIcones reset = new MesIcones("images/reset.png", "images/resetOver.png");
+	MesIcones cassebriques = new MesIcones("images/casseBriques.png", "images/casseBriquesOver.png");
 	
 	//Coque du natel
 	private  JLabel coqueGaucheNatel = new JLabel(new ImageIcon ("images/gauche.png")); 
@@ -103,7 +104,7 @@ public class Smartphone extends JFrame implements Serializable{
 	final static String ECRANFACEBOOK = "écran facebook";
 	final static String ECRANHEURE = "écran heure";
 	final static String ECRANFONDECRAN = "écran reset";
-	
+	final static String ECRANJEU = "écran jeu";
 	
 	
 	
@@ -186,7 +187,6 @@ public class Smartphone extends JFrame implements Serializable{
 		cards.add(new Settings (listePhotos),ECRANFONDECRAN);
 		cards.add(new Heure(),ECRANHEURE);
 		cards.add(new Facebook(),ECRANFACEBOOK);
-		
 	 
 		
 		
@@ -392,6 +392,38 @@ public class Smartphone extends JFrame implements Serializable{
 		            	reset.getMonIcone().setIcon(reset.getImage());
 		            }
 		        });
+				
+				//Casse briques
+				panel.add(cassebriques.getMonIcone());	
+				cassebriques.getMonIcone().addMouseListener(new MouseAdapter() {
+		          
+					 public void mouseClicked(MouseEvent e) {
+						 JFrame obj = new JFrame ();							
+							GamePlay gamePlay = new GamePlay(obj);
+							Toolkit toolkit = getToolkit();         
+							Dimension size = toolkit.getScreenSize();        
+							obj.setUndecorated(true);
+							obj.setBounds(size.width/2 - getWidth()/2+39,size.height/2 - getHeight()/2+142,445,627);
+							obj.setResizable(false);
+							obj.setVisible(true);
+							
+							obj.add(gamePlay);
+							
+			            	
+			            }
+		            @Override
+		            public void mouseEntered(MouseEvent e) {
+		            	//Affiche l'écran d'accueil
+		            	cassebriques.getMonIcone().setIcon(cassebriques.getImageOver());
+		            }
+		            @Override
+		            public void mouseExited(MouseEvent e) {
+		            	//Affiche l'écran d'accueil
+		            	cassebriques.getMonIcone().setIcon(cassebriques.getImage());
+		            }
+		        });
+				
+				
 	}
 	
 	//Permet de sérialiser ou de désérialiser mes photos
