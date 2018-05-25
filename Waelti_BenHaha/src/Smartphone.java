@@ -1,15 +1,10 @@
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -23,18 +18,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-
 import javax.imageio.ImageIO;
-import javax.swing.AbstractButton;
 import javax.swing.Box;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 
 
@@ -438,7 +427,7 @@ public class Smartphone extends JFrame implements Serializable{
 				
 	}
 	
-	//Permet de sérialiser ou de désérialiser mes photos
+	//Permet de sérialiser ou de désérialiser mes photos/contacts
 	
 	public static void serializeListePhotos(ListePhotos listePhotos) throws IOException {		
 		FileOutputStream fichier = new FileOutputStream("Serialisation/photo.ser");
