@@ -43,6 +43,9 @@ public class Smartphone extends JFrame implements Serializable{
 	//Liste de path pour créer les images
 	ListePhotos listePhotos;
 		
+	//Liste de contacts pour créer les contacts
+	ArrayList<Contact> listeContacts;
+		
 	//Permettre le déplacement du smartphone
 	DeplacementsSmartphone SMMove = new DeplacementsSmartphone(this);
 	
@@ -115,7 +118,7 @@ public class Smartphone extends JFrame implements Serializable{
 		
 		//Liste de path se trouvant dans le fichier photo.ser
 		try {
-			listePhotos=deserializeListePhotos("photoSerialisation/photo.ser");
+			listePhotos=deserializeListePhotos("Serialisation/photo.ser");
 		} catch (ClassNotFoundException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
@@ -124,6 +127,16 @@ public class Smartphone extends JFrame implements Serializable{
 			e2.printStackTrace();
 		}
 		
+		//Liste de contacts se trouvant dans le fichier contact.ser
+				try {
+					listeContacts=deserializeListeContacts("Serialisation/contact.ser");
+				} catch (ClassNotFoundException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				} catch (IOException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
 		
 		//Déplacements smartphone
 		addMouseListener(SMMove);
@@ -180,7 +193,8 @@ public class Smartphone extends JFrame implements Serializable{
 		//Ajout des panels au panel CardLayout (jeu de cartes)
 		cards.add(panel,ECRANACCUEIL);
 		cards.add(new CalculatriceJPanel (),ECRANCALCULATRICE);
-		cards.add(new ContactsJPanel(),ECRANCONTACTS);
+		ContactsJPanel contactPanel = new ContactsJPanel(listeContacts);
+		cards.add(contactPanel,ECRANCONTACTS);
 		PhotosJPanel classePhotos = new PhotosJPanel(listePhotos);
 		cards.add(classePhotos, ECRANPHOTOS);
 		cards.add(new Settings (listePhotos),ECRANFONDECRAN);
@@ -427,14 +441,13 @@ public class Smartphone extends JFrame implements Serializable{
 	//Permet de sérialiser ou de désérialiser mes photos
 	
 	public static void serializeListePhotos(ListePhotos listePhotos) throws IOException {		
-		FileOutputStream fichier = new FileOutputStream("photoSerialisation/photo.ser");
+		FileOutputStream fichier = new FileOutputStream("Serialisation/photo.ser");
 		BufferedOutputStream bfichier = new BufferedOutputStream (fichier);
 		ObjectOutputStream fichierObjectSerialize = new ObjectOutputStream(bfichier);
 		fichierObjectSerialize.writeObject(listePhotos); //je sauve l'objet dans ce fichier 
 		fichierObjectSerialize.close();
 	}
-	public static ListePhotos deserializeListePhotos(String path)  throws IOException, ClassNotFoundException {		//supprimer l'objet enregistré dans le fichier Person.ser
-		// TODO Auto-generated method stub
+	public static ListePhotos deserializeListePhotos(String path)  throws IOException, ClassNotFoundException {		
 		ListePhotos photo;
 		FileInputStream fichier = new FileInputStream(path);						
 		BufferedInputStream bfichier = new BufferedInputStream (fichier);
@@ -442,6 +455,22 @@ public class Smartphone extends JFrame implements Serializable{
 		photo=(ListePhotos) lectureObjet.readObject();
 		lectureObjet.close();
 		return photo;
+	}
+	public static void serializeListeContacts(ArrayList<Contact> listeContacts) throws IOException {		
+		FileOutputStream fichier = new FileOutputStream("Serialisation/contact.ser");
+		BufferedOutputStream bfichier = new BufferedOutputStream (fichier);
+		ObjectOutputStream fichierObjectSerialize = new ObjectOutputStream(bfichier);
+		fichierObjectSerialize.writeObject(listeContacts); 
+		fichierObjectSerialize.close();
+	}
+	public static ArrayList<Contact> deserializeListeContacts(String path)  throws IOException, ClassNotFoundException {		
+		ArrayList<Contact> contacts;
+		FileInputStream fichier = new FileInputStream(path);						
+		BufferedInputStream bfichier = new BufferedInputStream (fichier);
+		ObjectInputStream lectureObjet = new ObjectInputStream(bfichier);
+		contacts=(ArrayList<Contact>) lectureObjet.readObject();
+		lectureObjet.close();
+		return contacts;
 	}
 	
 	
