@@ -14,7 +14,7 @@ public class Contact implements Serializable{
 	private String prenom;
 	private String numero;
 	private String email;
-	private String photoProfil = "C:/Users/nadin/git/Waelti_BenHaha/images/photoProfil.png";
+	private String photoProfil = "contact/photoProfil.png";
 	
 	//Diverses manières de construire un contact :
 	
