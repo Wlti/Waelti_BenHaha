@@ -39,7 +39,7 @@ public ContactsJPanel (ArrayList<Contact> mesContacts){
 	 ajouterContact.setHorizontalAlignment((int) CENTER_ALIGNMENT);
 	
 	setBackground(Color.black);
-	centre.setLayout(new GridLayout(0,1,0,5));
+	centre.setLayout(new GridLayout(0,1,10,20));
 	add(titre,BorderLayout.NORTH);
 	add(centre,BorderLayout.CENTER);
 	titre.setFont(font);
@@ -47,7 +47,7 @@ public ContactsJPanel (ArrayList<Contact> mesContacts){
 	titre.setHorizontalAlignment((int) CENTER_ALIGNMENT);
 	scroll = new JScrollPane(centre);
      add(scroll);
-     centre.setBackground(Color.black);
+     centre.setBackground(Color.white);
      
     
 	
